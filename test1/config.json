@@ -1,0 +1,60 @@
+{
+    "outdir": "tmp",
+    "outprefix": "out",
+    "simulator": "xa",
+    "dpconfig_file": "../hosts1",
+    "cpulimit": 600,
+    "case_dir": ".",
+    "top_netlist": {
+        "schematic": "vref.sp",
+        "postlayout": null
+    },
+    "sim_cmdline": {
+        "prefix": null,
+        "suffix": "-c cfg.xa"
+    },
+    "identify_only": false,
+    "faults": {
+        "defaults": {
+            "short": {
+                "res": 1,
+                "cap": 1e-20
+            },
+            "open": {
+                "res": 1000000.0,
+                "cap": 1e-20
+            }
+        }
+    },
+    "diagnostic_coverage": {
+        "undetected_faults": "assumed_safe",
+        "failure_mode": [
+            {
+                "id": "FM001",
+                "id_label": "bad_bad_thing",
+                "functional_output": [
+                    {
+                        "type": "meas",
+                        "id": "fo1"
+                    },
+                    {
+                        "type": "meas",
+                        "id": "fo2"
+                    }
+                ],
+                "detection_output": [
+                    {
+                        "type": "meas",
+                        "id": "do1"
+                    }
+                ]
+            }
+        ],
+        "vc_fsm_export": {
+            "report_measured_safe": false,
+            "report_dc_krf": true,
+            "report_dc_kmpf": false,
+            "vc_fsm_export_file": "fmeda_label.csv"
+        }
+    }
+}

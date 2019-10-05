@@ -1,0 +1,4 @@
+
+mv tb4.xa tb4.xa.delete
+rm -rf tb4.xa.delete
+customfault -c af-tb4-xa.json -t xa.nom -o tb4.xa/tb4.xa -k 100 -n yes

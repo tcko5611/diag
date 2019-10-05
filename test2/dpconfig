@@ -1,0 +1,2 @@
+# SGE dpconfig file
+1||-1|/tmp|SGE|qsub -P bnormal -V -cwd -l mem_free=1G 

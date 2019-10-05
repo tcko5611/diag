@@ -1,0 +1,4 @@
+
+mv tb1.fs tb1.fs.delete
+rm -rf tb1.fs.delete
+customfault -c af-tb1-fs.json -t fs.nom -o tb1.fs/tb1.fs -k 100 -n yes

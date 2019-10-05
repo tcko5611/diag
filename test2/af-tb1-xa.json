@@ -1,0 +1,90 @@
+{
+    "simulator": "/u/mayukh/links/xa_image/bin/xa",
+    "dpconfig_file": "/u/mayukh/public/hosts_qsub",
+    "cpulimit": 10000,
+    "case_dir": "./",
+    "top_netlist": {
+        "schematic": "netlist1.sp"
+    },
+    "sim_cmdline": {
+        "prefix": "-hspice",
+        "suffix": "-ssl2 -wavefmt fsdb -mt 1"
+    },
+    "identify_only": false,
+    "faults": {
+        "defaults": {
+            "short": {
+                "res": 5,
+                "cap": null
+            },
+            "open": {
+                "res": 100000,
+                "cap": null
+            }
+        },
+        "models": [
+            {
+                "name": "mos_short_dgs",
+                "base_model": "mos_short",
+                "terminals": [
+                    "d",
+                    "g",
+                    "s"
+                ]
+            }
+        ]
+    },
+    "apply_fault_model": [
+        {
+            "fault_model": [
+                "mos_short_dgs"
+            ],
+            "inst": [
+                "xsrhw"
+            ]
+        }
+    ],
+    "diagnostic_coverage": {
+        "vc_fsm_export": {
+            "vc_fsm_export_file": "vc_fsm_export",
+            "report_dc_krf": true,
+            "report_measured_safe": true
+        },
+        "undetected_faults": "assumed_safe",
+        "failure_mode": [
+            {
+                "id": "FM001",
+                "id_label": "my failure mode",
+                "functional_output": [
+                    {
+                        "type": "meas",
+                        "id": "fo1"
+                    }
+                ],
+                "detection_output": [
+                    {
+                        "type": "meas",
+                        "id": "sm1"
+                    }
+                ]
+            },
+            {
+                "id": "FM002",
+                "id_label": "my failure mode",
+                "functional_output": [
+                    {
+                        "type": "meas",
+                        "id": "fo2"
+                    }
+                ],
+                "detection_output": [
+                    {
+                        "type": "meas",
+                        "id": "sm2"
+                    }
+                ]
+            }
+        ]
+    },
+    "cleanup_level": 1
+}

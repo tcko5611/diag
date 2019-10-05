@@ -1,0 +1,3643 @@
+{
+    "fault_list": [
+        {
+            "id": 0,
+            "gid": 0,
+            "selected": false,
+            "fault_info": [
+                {
+                    "type": "fault_free"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "gid": 1,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "res_short",
+                    "instance_name": "xi0.r100",
+                    "port_names": [
+                        "xi0.vdd",
+                        "xi0.node1"
+                    ],
+                    "rshort": 1,
+                    "likelihood_info": {
+                        "r": 1000000.0,
+                        "net_name": "xi0.vdd",
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_res_short_1_1_1.csh",
+                    "command": "inject_fault -inst xi0.r100 -type short -res_val 1.000000e+00 -weight 1.000000e+00 -fault_type res_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "dangerous_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "1.496990e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "6.959450e-01",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "gid": 2,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "res_open",
+                    "instance_name": "xi0.r100",
+                    "port_names": [
+                        "xi0.vdd"
+                    ],
+                    "ropen": 1000000.0,
+                    "likelihood_info": {
+                        "r": 1000000.0,
+                        "net_name": "xi0.vdd",
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_res_open_2_2_2.csh",
+                    "command": "inject_fault -inst xi0.r100 -type open -res_val 1.000000e+06 -weight 1.000000e+00 -fault_type res_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "gid": 3,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "res_short",
+                    "instance_name": "xi0.r101",
+                    "port_names": [
+                        "xi0.node1",
+                        "xi0.node2"
+                    ],
+                    "rshort": 1,
+                    "likelihood_info": {
+                        "r": 1000000.0,
+                        "net_name": "xi0.vdd",
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_res_short_3_3_3.csh",
+                    "command": "inject_fault -inst xi0.r101 -type short -res_val 1.000000e+00 -weight 1.000000e+00 -fault_type res_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "dangerous_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "1.496990e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "6.959450e-01",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "gid": 4,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "res_open",
+                    "instance_name": "xi0.r101",
+                    "port_names": [
+                        "xi0.node1"
+                    ],
+                    "ropen": 1000000.0,
+                    "likelihood_info": {
+                        "r": 1000000.0,
+                        "net_name": "xi0.vdd",
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_res_open_4_4_4.csh",
+                    "command": "inject_fault -inst xi0.r101 -type open -res_val 1.000000e+06 -weight 1.000000e+00 -fault_type res_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "gid": 5,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "res_short",
+                    "instance_name": "xi0.r102",
+                    "port_names": [
+                        "xi0.node2",
+                        "xi0.node3"
+                    ],
+                    "rshort": 1,
+                    "likelihood_info": {
+                        "r": 1000000.0,
+                        "net_name": "xi0.vdd",
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_res_short_5_5_5.csh",
+                    "command": "inject_fault -inst xi0.r102 -type short -res_val 1.000000e+00 -weight 1.000000e+00 -fault_type res_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "dangerous_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "2.878940e-04",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.00028035"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "gid": 6,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "res_open",
+                    "instance_name": "xi0.r102",
+                    "port_names": [
+                        "xi0.node2"
+                    ],
+                    "ropen": 1000000.0,
+                    "likelihood_info": {
+                        "r": 1000000.0,
+                        "net_name": "xi0.vdd",
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_res_open_6_6_6.csh",
+                    "command": "inject_fault -inst xi0.r102 -type open -res_val 1.000000e+06 -weight 1.000000e+00 -fault_type res_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "gid": 7,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "res_short",
+                    "instance_name": "xi0.r103",
+                    "port_names": [
+                        "xi0.node3",
+                        "xi0.vss"
+                    ],
+                    "rshort": 1,
+                    "likelihood_info": {
+                        "r": 1000000.0,
+                        "net_name": "xi0.vdd",
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_res_short_7_7_7.csh",
+                    "command": "inject_fault -inst xi0.r103 -type short -res_val 1.000000e+00 -weight 1.000000e+00 -fault_type res_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "dangerous_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "2.878940e-04",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.00028035"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "gid": 8,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "res_open",
+                    "instance_name": "xi0.r103",
+                    "port_names": [
+                        "xi0.node3"
+                    ],
+                    "ropen": 1000000.0,
+                    "likelihood_info": {
+                        "r": 1000000.0,
+                        "net_name": "xi0.vdd",
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_res_open_8_8_8.csh",
+                    "command": "inject_fault -inst xi0.r103 -type open -res_val 1.000000e+06 -weight 1.000000e+00 -fault_type res_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "gid": 9,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "cap_short",
+                    "instance_name": "xi0.cload",
+                    "port_names": [
+                        "xi0.vref",
+                        "xi0.vss"
+                    ],
+                    "rshort": 1,
+                    "likelihood_info": {
+                        "c": 9.99999e-13,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_cap_short_9_9_9.csh",
+                    "command": "inject_fault -inst xi0.cload -type short -res_val 1.000000e+00 -weight 1.000000e+00 -fault_type cap_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "1.928550e-10",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "4.765800e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "5.610170e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "gid": 10,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "cap_open",
+                    "instance_name": "xi0.cload",
+                    "port_names": [
+                        "xi0.vref"
+                    ],
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "c": 9.99999e-13,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_cap_open_10_10_10.csh",
+                    "command": "inject_fault -inst xi0.cload -type open -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type cap_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "gid": 11,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "b",
+                        "s"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.vdd"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_11_11_11.csh",
+                    "command": "inject_fault -inst xi1.mn11 -type short -node b s -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 2.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "gid": 11,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "b",
+                        "s"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.vdd"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "gid": 13,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mn11",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi0.vss",
+                        "xi0.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_13_13_13.csh",
+                    "command": "inject_fault -inst xi0.mn11 -type short -node s d -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 7.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "5.610150e-04",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.00028035"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "4.765680e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "5.610150e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "gid": 13,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "b",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "gid": 13,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "b",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "gid": 13,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "gid": 13,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mn11",
+                    "ports": [
+                        "b",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi0.vss",
+                        "xi0.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "gid": 13,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mn11",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi0.vss",
+                        "xi0.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "gid": 13,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mn11",
+                    "ports": [
+                        "b",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi0.vss",
+                        "xi0.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "gid": 20,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.flag"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_20_20_20.csh",
+                    "command": "inject_fault -inst xi1.mp22 -type short -node s d -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 3.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "safe_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "1.243960e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "gid": 20,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "b",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.flag"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "gid": 20,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "b",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.flag"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "gid": 23,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_23_23_23.csh",
+                    "command": "inject_fault -inst xi1.mp11 -type short -node s d -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 6.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "gid": 23,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "b",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "gid": 23,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "b",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "gid": 23,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "gid": 23,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "b",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "gid": 23,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "b",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vss",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "gid": 29,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "d",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.flag",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_29_29_29.csh",
+                    "command": "inject_fault -inst xi1.mp22 -type short -node d g -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 2.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "safe_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "3.436770e-03",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "gid": 29,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "d",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.flag",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "gid": 31,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "d",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi0.vref",
+                        "xi0.node2"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_31_31_31.csh",
+                    "command": "inject_fault -inst xi0.mp10 -type short -node d g -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "-1.250230e-08",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "4.765850e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "2.799300e-03",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "gid": 32,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "g",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vref",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_32_32_32.csh",
+                    "command": "inject_fault -inst xi1.mp11 -type short -node g d -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 2.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "2.141080e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "1.087710e-02",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "gid": 32,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "g",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vref",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 34,
+            "gid": 34,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi0.vdd",
+                        "xi0.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_34_34_34.csh",
+                    "command": "inject_fault -inst xi0.mp10 -type short -node s d -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 3.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "dangerous_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "3.332200e-04",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.00028035"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "9.996680e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.99"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "gid": 34,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vdd",
+                        "xi1.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "gid": 34,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "b",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi0.vdd",
+                        "xi0.vref"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "gid": 37,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vdd",
+                        "xi1.flag"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_37_37_37.csh",
+                    "command": "inject_fault -inst xi1.mn22 -type short -node s d -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "gid": 38,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi0.vdd",
+                        "xi0.node2"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_38_38_38.csh",
+                    "command": "inject_fault -inst xi0.mp10 -type short -node s g -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 2.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "3.907170e-08",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "4.785810e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "7.301720e-02",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "gid": 38,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "b",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi0.vdd",
+                        "xi0.node2"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "gid": 40,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.vdd",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_short_40_40_40.csh",
+                    "command": "inject_fault -inst xi1.mn11 -type short -node s d -res_val 1.000000e+00 -cap_val 1.000000e-20 -weight 2.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "safe_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "4.808180e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "gid": 40,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vdd",
+                        "xi1.out1"
+                    ],
+                    "rshort": 1,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "gid": 42,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi0.vref"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_42_42_42.csh",
+                    "command": "inject_fault -inst xi0.mp10 -type open -node d -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "8.264460e-07",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "5.212600e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "1.732930e-01",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "gid": 43,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi0.node2"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_43_43_43.csh",
+                    "command": "inject_fault -inst xi0.mp10 -type open -node g -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "dangerous_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "2.934970e-04",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.00028035"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 44,
+            "gid": 44,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "s"
+                    ],
+                    "port_names": [
+                        "xi0.vdd"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_44_44_44.csh",
+                    "command": "inject_fault -inst xi0.mp10 -type open -node s -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "3.801930e-07",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "4.971520e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "1.458880e-01",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.81"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 45,
+            "gid": 45,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi0.mp10",
+                    "ports": [
+                        "b"
+                    ],
+                    "port_names": [
+                        "xi0.vdd"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 45,
+                        "l": 1,
+                        "gate_cap": 0.236175,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_45_45_45.csh",
+                    "command": "inject_fault -inst xi0.mp10 -type open -node b -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 46,
+            "gid": 46,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi0.mn11",
+                    "ports": [
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi0.vref"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_46_46_46.csh",
+                    "command": "inject_fault -inst xi0.mn11 -type open -node d -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "dangerous_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "9.985040e-07",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "9.996800e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.99"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 47,
+            "gid": 47,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi0.mn11",
+                    "ports": [
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi0.vref"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_47_47_47.csh",
+                    "command": "inject_fault -inst xi0.mn11 -type open -node g -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 48,
+            "gid": 48,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi0.mn11",
+                    "ports": [
+                        "s"
+                    ],
+                    "port_names": [
+                        "xi0.vss"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_48_48_48.csh",
+                    "command": "inject_fault -inst xi0.mn11 -type open -node s -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": true,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "dangerous_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "current_mn11",
+                            "value": "7.502680e-07",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.00025365"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_vref",
+                            "value": "9.997600e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.99"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 49,
+            "gid": 49,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi0.mn11",
+                    "ports": [
+                        "b"
+                    ],
+                    "port_names": [
+                        "xi0.vss"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_49_49_49.csh",
+                    "command": "inject_fault -inst xi0.mn11 -type open -node b -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 50,
+            "gid": 50,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.out1"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_50_50_50.csh",
+                    "command": "inject_fault -inst xi1.mp11 -type open -node d -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "safe_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "8.615270e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 51,
+            "gid": 51,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vref"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_51_51_51.csh",
+                    "command": "inject_fault -inst xi1.mp11 -type open -node g -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 52,
+            "gid": 52,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "s"
+                    ],
+                    "port_names": [
+                        "xi1.vss"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_52_52_52.csh",
+                    "command": "inject_fault -inst xi1.mp11 -type open -node s -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "safe_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CL",
+                            "id": "do1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "voltage_flag",
+                            "value": "7.237550e-04",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 53,
+            "gid": 53,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mp11",
+                    "ports": [
+                        "b"
+                    ],
+                    "port_names": [
+                        "xi1.vss"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_53_53_53.csh",
+                    "command": "inject_fault -inst xi1.mp11 -type open -node b -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 54,
+            "gid": 54,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.out1"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_54_54_54.csh",
+                    "command": "inject_fault -inst xi1.mn11 -type open -node d -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 55,
+            "gid": 55,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.vref"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_55_55_55.csh",
+                    "command": "inject_fault -inst xi1.mn11 -type open -node g -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 56,
+            "gid": 56,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "s"
+                    ],
+                    "port_names": [
+                        "xi1.vdd"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_56_56_56.csh",
+                    "command": "inject_fault -inst xi1.mn11 -type open -node s -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 57,
+            "gid": 57,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mn11",
+                    "ports": [
+                        "b"
+                    ],
+                    "port_names": [
+                        "xi1.vss"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_57_57_57.csh",
+                    "command": "inject_fault -inst xi1.mn11 -type open -node b -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 58,
+            "gid": 58,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.flag"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_58_58_58.csh",
+                    "command": "inject_fault -inst xi1.mp22 -type open -node d -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 59,
+            "gid": 59,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.out1"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_59_59_59.csh",
+                    "command": "inject_fault -inst xi1.mp22 -type open -node g -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 60,
+            "gid": 60,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "s"
+                    ],
+                    "port_names": [
+                        "xi1.vss"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_60_60_60.csh",
+                    "command": "inject_fault -inst xi1.mp22 -type open -node s -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 61,
+            "gid": 61,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mp22",
+                    "ports": [
+                        "b"
+                    ],
+                    "port_names": [
+                        "xi1.vss"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "nfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.524833,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_61_61_61.csh",
+                    "command": "inject_fault -inst xi1.mp22 -type open -node b -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 62,
+            "gid": 62,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "d"
+                    ],
+                    "port_names": [
+                        "xi1.flag"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_62_62_62.csh",
+                    "command": "inject_fault -inst xi1.mn22 -type open -node d -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 63,
+            "gid": 63,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "g"
+                    ],
+                    "port_names": [
+                        "xi1.out1"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_63_63_63.csh",
+                    "command": "inject_fault -inst xi1.mn22 -type open -node g -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 64,
+            "gid": 64,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "s"
+                    ],
+                    "port_names": [
+                        "xi1.vdd"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_64_64_64.csh",
+                    "command": "inject_fault -inst xi1.mn22 -type open -node s -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 65,
+            "gid": 65,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_open",
+                    "instance_name": "xi1.mn22",
+                    "ports": [
+                        "b"
+                    ],
+                    "port_names": [
+                        "xi1.vss"
+                    ],
+                    "ropen": 1000000.0,
+                    "copen": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "pfet",
+                        "w": 10,
+                        "l": 5,
+                        "gate_cap": 0.262417,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/fault_mos_open_65_65_65.csh",
+                    "command": "inject_fault -inst xi1.mn22 -type open -node b -res_val 1.000000e+06 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_open"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "bad_bad_thing",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "tags": [
+            "run0"
+        ],
+        "nominal": true,
+        "nominal_only": false,
+        "sampled": false,
+        "collapsed": true,
+        "user_defined": false,
+        "diagnostic_coverage": true,
+        "latent_diagnostic_coverage": false,
+        "total_weight": 65.0,
+        "weight_scale": 1.0,
+        "sample_seed": 3027890771,
+        "sample_size": 0,
+        "out_prefix": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/"
+    },
+    "tagdata": [
+        {
+            "tag": "run0",
+            "out_prefix": "/remote/tw_rnd1/ktc/work_fault/customfault/unit/whitebox/diagnostic_coverage/meas_xa/tmp/run0/",
+            "complete": true
+        }
+    ]
+}

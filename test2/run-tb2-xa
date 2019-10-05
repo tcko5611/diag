@@ -1,0 +1,4 @@
+
+mv tb2.xa tb2.xa.delete
+rm -rf tb2.xa.delete
+customfault -c af-tb2-xa.json -t xa.nom -o tb2.xa/tb2.xa -k 100 -n yes

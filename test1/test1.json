@@ -1,0 +1,29 @@
+{
+    "outdir": "tmp",
+    "outprefix": "out",
+    "simulator": "xa",
+    "dpconfig_file": "../hosts1",
+    "cpulimit": 600,
+    "case_dir": ".",
+    "top_netlist": {
+        "schematic": "vref.sp",
+        "postlayout": null
+    },
+    "sim_cmdline": {
+        "prefix": null,
+        "suffix": "-c cfg.xa"
+    },
+    "identify_only": false,
+    "faults": {
+        "defaults": {
+            "short": {
+                "res": 1,
+                "cap": 1e-20
+            },
+            "open": {
+                "res": 1000000.0,
+                "cap": 1e-20
+            }
+        }
+    }
+}

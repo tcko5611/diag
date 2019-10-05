@@ -1,0 +1,4 @@
+
+mv tb3.xa tb3.xa.delete
+rm -rf tb3.xa.delete
+customfault -c af-tb3-xa.json -t xa.nom -o tb3.xa/tb3.xa -k 100 -n yes

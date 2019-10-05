@@ -1,0 +1,21 @@
+This directory will contain a unit test for DC latent fault for the 4 step flow.
+The safety mechanism is a logic bist circuit
+
+netlist1.sp - tests the circuit in mission mode
+netlist2.sp - test mode for the logic bist
+
+Step 1 - DCrf: run-tb1-xa
+  run-tb1-xa/fs
+
+Step 2 - SM undetected faults
+  run-tb2-xa/fs
+
+Step 2b - generate the dual fault list file
+  gen_daul_fault.sh tb1.xa/tb1.xa tb2.xa/tb2.xa > step3.dual_fault_list
+
+
+Step 3 - Run Dual Fault Injection
+  run-tb3-xa/fs - this will use a config file that only contains FO and DO - can the dual point faults be identified?
+  
+Step 4 - Run 
+  run-tb4-xa/fs - this will use a config file the also contains the LDO command proposal
