@@ -6,6 +6,7 @@
 #include "ui_mainwindow.h"
 #include "QAfData.h"
 #include "rapidjson/document.h"
+#include "DiagSettingDialog.h"
 
 using namespace rapidjson;
 
@@ -19,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
           this, SLOT(onConfigJsonChanged()));
   connect(qAf, SIGNAL(faultListChanged()),
           this, SLOT(onFaultListChanged()));
+  diagSettingDialog_ = new DiagSettingDialog(this);
 }
 
 MainWindow::~MainWindow()
@@ -94,6 +96,7 @@ void MainWindow::on_actionLoadConfig_triggered()
   QString fileName = QFileDialog::getOpenFileName(this, tr("Open Config File"), ".",
                                tr("Configs (*.json)"));
   qAf->parseConfigJson(fileName);
+  diagSettingDialog_->setAfData(qAf);
 }
 
 
@@ -112,4 +115,9 @@ void MainWindow::onConfigJsonChanged()
 
 void MainWindow::onFaultListChanged()
 {
+}
+
+void MainWindow::on_actionDiagSetting_triggered()
+{
+  diagSettingDialog_->open();
 }

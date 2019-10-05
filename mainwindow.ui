@@ -54,7 +54,7 @@
     <property name="title">
      <string>Diag</string>
     </property>
-    <addaction name="actionSetting"/>
+    <addaction name="actionDiagSetting"/>
     <addaction name="actionResult"/>
    </widget>
    <addaction name="menuFile"/>
@@ -71,7 +71,7 @@
     <string>Load Fdb</string>
    </property>
   </action>
-  <action name="actionSetting">
+  <action name="actionDiagSetting">
    <property name="text">
     <string>Setting</string>
    </property>

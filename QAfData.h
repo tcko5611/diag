@@ -52,7 +52,7 @@ public:
   void setValueField(const char* field1, Value &value);
   
   void setValueField(const char* field1, const char* field2, Value &value);
-  
+  void removeField(const char* field);
   
   void parseConfigJson(const QString &fileName);
   void parseFaultList(const QString &fileName);

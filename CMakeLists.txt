@@ -18,7 +18,8 @@ set(Qt5_DIR "/global/libs/qt_qscn_2017.09/5.6.2/linux64_debug_shlib/install/lib/
 
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 add_executable(diag main.cpp mainwindow.h mainwindow.cpp mainwindow.ui
-  JsonUtils.h JsonUtils.cpp QAfData.h QAfData.cpp)
+  JsonUtils.h JsonUtils.cpp QAfData.h QAfData.cpp DiagSetting.h DiagSetting.cpp
+  DiagSettingDialog.ui DiagSettingDialog.h DiagSettingDialog.cpp)
 
 target_include_directories(diag PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_BINARY_DIR})

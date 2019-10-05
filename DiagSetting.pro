@@ -13,8 +13,20 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    DiagResultDialog.cpp \
+    DiagSetting.cpp \
+    DiagSettingDialog.cpp \
+    JsonUtils.cpp \
+    QAfData.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    DiagResultDialog.h \
+    DiagSetting.h \
+    DiagSettingDialog.h \
+    JsonUtils.h \
+    QAfData.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    DiagResultDialog.ui \
+    DiagSettingDialog.ui

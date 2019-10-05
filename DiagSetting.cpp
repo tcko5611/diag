@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <sstream>
 #include <iterator>
+#include <fstream>
 
 #include "DiagSetting.h"
 
@@ -9,11 +10,21 @@ using namespace boost::logic;
 using namespace rapidjson;
 
 VcFsmExport::VcFsmExport()
-  : isSetted(false), reportMeasuredSafe_(indeterminate),
+  : enabled_(false), reportMeasuredSafe_(indeterminate),
     reportDcKrf_(indeterminate), reportDcKmpf_(indeterminate)
 {
 }
-Value VcFsmExport::getValue(rapidjson::AllocatorType &allocator)
+
+void VcFsmExport::clear()
+{
+  enabled_ = false;
+  vcFsmExportFile_ = "";
+  reportMeasuredSafe_ = indeterminate;
+  reportDcKrf_ = indeterminate;
+  reportDcKmpf_ = indeterminate;
+}
+
+Value VcFsmExport::getValue(Document::AllocatorType &allocator)
 {
   Value v(kObjectType);
   if (!vcFsmExportFile_.empty()) {
@@ -21,7 +32,7 @@ Value VcFsmExport::getValue(rapidjson::AllocatorType &allocator)
     vv.SetString(vcFsmExportFile_.c_str(), vcFsmExportFile_.size(), allocator);
     v.AddMember("vc_fsm_export_file", vv, allocator);
   }
-  if (reportMeasuredSafe_ != indetermine) {
+  if (reportMeasuredSafe_ != indeterminate) {
     if (reportMeasuredSafe_) {
       v.AddMember("report_measured_safe", true, allocator);
     }
@@ -29,7 +40,7 @@ Value VcFsmExport::getValue(rapidjson::AllocatorType &allocator)
       v.AddMember("report_measured_safe", false, allocator);
     }
   }
-  if (reportDcKrf_ != indetermine) {
+  if (reportDcKrf_ != indeterminate) {
     if (reportDcKrf_) {
       v.AddMember("report_dc_krf", true, allocator);
     }
@@ -37,7 +48,7 @@ Value VcFsmExport::getValue(rapidjson::AllocatorType &allocator)
       v.AddMember("report_dc_krf", false, allocator);
     }
   }
-  if (reportDcKmpf_ != indetermine) {
+  if (reportDcKmpf_ != indeterminate) {
     if (reportDcKmpf_) {
       v.AddMember("report_dc_kmpf", true, allocator);
     }
@@ -48,7 +59,7 @@ Value VcFsmExport::getValue(rapidjson::AllocatorType &allocator)
   return v;
 }
 
-rapidjson::Value FailureMode::getValue(rapidjson::AllocatorType &allocator)
+Value FailureMode::getValue(Document::AllocatorType &allocator)
 {
   Value v(kObjectType);
   if (!id_.empty()) {
@@ -61,9 +72,9 @@ rapidjson::Value FailureMode::getValue(rapidjson::AllocatorType &allocator)
     vv.SetString(idLabel_.c_str(), idLabel_.size(), allocator);
     v.AddMember("id_label", vv, allocator);
   }
-  if (!funnctional_.empty()) {
+  if (!functional_.empty()) {
     Value vv(kArrayType);
-    for (auto &e : funnctional_) {
+    for (auto &e : functional_) {
       Value vvv(kObjectType);
       Value vvv1, vvv2;
       vvv1.SetString(e.second.first.c_str(), e.second.first.size(), allocator);
@@ -87,9 +98,30 @@ rapidjson::Value FailureMode::getValue(rapidjson::AllocatorType &allocator)
     }
     v.AddMember("detection_output", vv, allocator);
   }
+  if (!latentDetection_.empty()) {
+    Value vv(kArrayType);
+    for (auto &e : latentDetection_) {
+      Value vvv(kObjectType);
+      Value vvv1, vvv2;
+      vvv1.SetString(e.second.first.c_str(), e.second.first.size(), allocator);
+      vvv2.SetString(e.second.second.c_str(), e.second.second.size(), allocator);
+      vvv.AddMember("id", vvv1, allocator);
+      vvv.AddMember("type", vvv2, allocator);
+      vv.PushBack(vvv, allocator);
+    }
+    v.AddMember("latent_detection_output", vv, allocator);
+  }
   return v;
 }
 
+static string removeLastIncorrectCharater(const string &s)
+{
+  string n = s;
+  if (n[n.size() - 1] == '"') {
+    n = n.substr(0, n.size()-1);
+  }
+  return n;
+}
 /*
  * build sim stop from sim_stop command line
  */
@@ -103,35 +135,30 @@ static SimStop buildSimStop(const string& line)
        back_inserter(tokens));
   for (int i = 1; i < tokens.size(); ++i) {
     if (tokens[i] == "-check") {
-      d.check_ = tokens[++i];
+      d.check_ = removeLastIncorrectCharater(tokens[++i]);
     }
     else if (tokens[i] == "-meas_name") {
-      d.measName_ = tokens[++i];
+      d.measName_ = removeLastIncorrectCharater(tokens[++i]);
     }
     else if (tokens[i] == "-min") {
-      d.min _ = tokens[++i];
+      d.min_ = removeLastIncorrectCharater(tokens[++i]);
     }
     else if (tokens[i] == "-max") {
-      d.max_ = tokens[++i];
+      d.max_ = removeLastIncorrectCharater(tokens[++i]);
     }
     else if (tokens[i] == "-id") {
-      d.id_ = tokens[++i];
+      d.id_ = removeLastIncorrectCharater(tokens[++i]);
     }
     else if (tokens[i] == "-error") {
-      d.error_ = tokens[++i];
+      d.error_ = removeLastIncorrectCharater(tokens[++i]);
     }
   }
   return d;
 }
 
 DiagSetting::DiagSetting()
-  :enabled(false)
+  :enabled_(false)
 {
-}
-
-void DiagSetting::setEnabled(bool b)
-{
-  enabled = b;
 }
 
 void DiagSetting::buildSimStops(const std::vector<std::string> &fNs)
@@ -142,7 +169,7 @@ void DiagSetting::buildSimStops(const std::vector<std::string> &fNs)
     while(std::getline(in, line)) {
       if (line.find("set_sim_stop") != string::npos) {
         SimStop d = buildSimStop(line);
-        simStops_[d.id()] = d; 
+        simStops_[d.id_] = d; 
       }
     }
   }
@@ -150,7 +177,28 @@ void DiagSetting::buildSimStops(const std::vector<std::string> &fNs)
 
 void DiagSetting::buildDiagSetting(const rapidjson::Document &json)
 {
+  vector<string> fileNames;
+  if (json.HasMember("top_netlist") &&
+      json["top_netlist"].HasMember("schematic")) {
+    fileNames.push_back(json["top_netlist"]["schematic"].GetString());
+  }
+  if (json.HasMember("sim_cmdline") &&
+      json["sim_cmdline"].HasMember("suffix")) {
+    istringstream iss(json["sim_cmdline"]["suffix"].GetString());
+    vector<string> tokens;
+    copy(istream_iterator<string>(iss),
+         istream_iterator<string>(),
+         back_inserter(tokens));
+    for (int i = 0; i < tokens.size(); ++i) {
+      if (tokens[i] == "-c") {
+        fileNames.push_back(tokens[++i]);
+        break;
+      }
+    }
+  }
+  buildSimStops(fileNames);
   if (!json.HasMember("diagnostic_coverage")) return;
+  enabled_ = true;
   const Value &diag = json["diagnostic_coverage"];
   // set undetected_faults
   if (diag.HasMember("undetected_faults")) {
@@ -162,7 +210,7 @@ void DiagSetting::buildDiagSetting(const rapidjson::Document &json)
   // set vc_fsm_export
   if (diag.HasMember("vc_fsm_export")) {
     const Value &vc = diag["vc_fsm_export"];
-    vcFsmExport_.isSetted = true;
+    vcFsmExport_.enabled_ = true;
     if (vc.HasMember("report_measured_safe")) {
       vcFsmExport_.reportMeasuredSafe_ = vc["report_measured_safe"].GetBool();
     }
@@ -177,26 +225,26 @@ void DiagSetting::buildDiagSetting(const rapidjson::Document &json)
     }    
   }
   else {
-    vcFsmExport_.isSetted = false;
+    vcFsmExport_.enabled_ = false;
   }
   // set faulure mode
   failureModes_.clear();
   if (diag.HasMember("failure_mode")) {
     const Value &failureModes = diag["failure_mode"];
-    for (auto &v : failureModes) {
+    for (auto &v : failureModes.GetArray()) {
       FailureMode f;
-      f.id_ = v["id"];
-      f.idLabel_ = v["id_label"];
+      f.id_ = v["id"].GetString();
+      f.idLabel_ = v["id_label"].GetString();
       if (v.HasMember("functional_output")) {
-        for (auto &vv : v["functional_output"]) {
-          string id = vv["id"], type = vv["meas"];
-          f.funnctional_[id] = make_pair(id, meas);
+        for (auto &vv : v["functional_output"].GetArray()) {
+          string id = vv["id"].GetString(), type = vv["type"].GetString();
+          f.functional_[id] = make_pair(id, type);
         }
       }
       if (v.HasMember("detection_output")) {
-        for (auto &vv : v["detection_output"]) {
-          string id = vv["id"], type = vv["meas"];
-          f.detection_[id] = make_pair(id, meas);
+        for (auto &vv : v["detection_output"].GetArray()) {
+          string id = vv["id"].GetString(), type = vv["type"].GetString();
+          f.detection_[id] = make_pair(id, type);
         }
       }
       failureModes_[f.id_] = f;
@@ -204,82 +252,19 @@ void DiagSetting::buildDiagSetting(const rapidjson::Document &json)
   }  
 }
 
-
 vector<string> DiagSetting::getSimStopIds()
 {
   vector<string> v;
   for (auto &e : simStops_) {
-    v.psh_back(e.first);
+    v.push_back(e.first);
   }
   return v;
 }
-void DiagSetting::setUndetectedFaults(const std::string &s)
-{
-  undetectedFaults_ = s; 
-}
 
-void  DiagSetting::setVcFsmExport(bool b)
-{
-  vcFsmExport_.isSetted_ = b;
-}
-
-void DiagSetting::setVcMeasSafe(boost::logic::tribool b)
-{
-  vcFsmExport_.reportMeasuredSafe_ = b;
-}
-
-void DiagSetting::setVcDcKrf(boost::logic::tribool b)
-{
-  vcFsmExport_.reportDcKrf_ = b;
-}
-
-void DiagSetting::setVcDcKmpf(boost::logic::tribool b)
-{
-  vcFsmExport_.reportDcKmpf_ = b;
-}
-void DiagSetting::setVcFsmExportFile(const std::string &s)
-{
-  vcFsmExport_.vcFsmExportFile_ = s;
-}
-
-void DiagSetting::addFailureMode(const FailureMode & f)
-{
-  failureModes_[f.id_] = f;
-}
-
-void DiagSetting::removeFailureMode(const string &id)
-{
-  failureModes_.erase(id);
-}
-
-void DiagSetting::addFailFunc(const string &fid, const string &id, const string &type)
-{
-  map<string, pair<string, string> > &f = failureModes_[fid].functional_;
-  f[id] = make_pair(id, type);   
-}
-
-void DiagSetting::removeFailFunc(const string &fid, const string &id)
-{
-  map<string, pair<string, string> > &f = failureModes_[fid].functional_;
-  f.erase(id);
-}
-
-void DiagSetting::addFailDetec(const string &fid, const string &id, const string &type)
-{
-  map<string, pair<string, string> > &f = failureModes_[fid].detection_;
-  f[id] = make_pair(id, type);   
-}
-
-void DiagSetting::removeFailDetec(const string &fid, const string &id)
-{
-  map<string, pair<string, string> > &f = failureModes_[fid].detection_;
-  f.erase(id);
-}
-
-Value DiagSetting::getValue(AllocatorType &allocator)
+Value DiagSetting::getValue(Document::AllocatorType &allocator)
 {
   Value o;
-  if (!enabled) return o;
+  if (!enabled_) return o;
   o.SetObject();
   // for undetectedFaults_
   if (!undetectedFaults_.empty()) {
@@ -290,16 +275,25 @@ Value DiagSetting::getValue(AllocatorType &allocator)
     o.AddMember("undetected_faults", undetectedFaults, allocator);
   }
   // for vc_fsm_export
-  if (vcFsmExport_.isSetted) {
+  if (vcFsmExport_.enabled_) {
     Value vc = vcFsmExport_.getValue(allocator);
     o.AddMember("vc_fsm_export", vc, allocator);
   }
     // for failure mode
-    Value failures(kArrayType);
-    for (auto & a: failureModes_) {
-    failures.PushBack(a.second.getValue(allocator), allocator)
+  Value failures(kArrayType);
+  for (auto & a: failureModes_) {
+    failures.PushBack(a.second.getValue(allocator), allocator);
   }
-  o.AddMember("failure_mode", vc, allocator);
+  o.AddMember("failure_mode", failures, allocator);
   
   return o;
+}
+
+void DiagSetting::clear()
+{
+  simStops_.clear();
+  enabled_ = false;
+  undetectedFaults_ = "";
+  vcFsmExport_.clear();
+  failureModes_.clear();
 }

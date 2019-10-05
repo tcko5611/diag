@@ -134,7 +134,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBoxUndetectdFaults">
+      <widget class="QComboBox" name="comboBoxUndetectedFaults">
        <item>
         <property name="text">
          <string>None</string>
@@ -162,7 +162,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="tableWidgetFaultMode">
+    <widget class="QTableWidget" name="tableWidgetFailureMode">
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>200</number>
      </attribute>
@@ -250,13 +250,12 @@
     </widget>
    </item>
   </layout>
-  <zorder>layoutWidget</zorder>
   <zorder>label_7</zorder>
   <zorder>tableWidgetMeas</zorder>
   <zorder>groupBox</zorder>
   <zorder>buttonBox</zorder>
   <zorder>label</zorder>
-  <zorder>tableWidgetFaultMode</zorder>
+  <zorder>tableWidgetFailureMode</zorder>
   <zorder>checkBox</zorder>
  </widget>
  <resources/>

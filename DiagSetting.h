@@ -17,48 +17,44 @@ struct SimStop {
 
 struct VcFsmExport {
   VcFsmExport();
-  bool isSetted_;
+  void clear();
+  bool enabled_;
   std::string vcFsmExportFile_;
   boost::logic::tribool reportMeasuredSafe_;
   boost::logic::tribool reportDcKrf_;
   boost::logic::tribool reportDcKmpf_;
-  rapidjson::Value getValue(rapidjson::AllocatorType &allocator);
+  rapidjson::Value getValue(rapidjson::Document::AllocatorType &allocator);
 };
 
 struct FailureMode {
   std::string id_;
   std::string idLabel_;
-  std::map<std::string, std::pair<std::string, std::string> > funnctional_;
+  std::map<std::string, std::pair<std::string, std::string> > functional_;
   std::map<std::string, std::pair<std::string, std::string> > detection_;
-  rapidjson::Value getValue(rapidjson::AllocatorType &allocator);
+  std::map<std::string, std::pair<std::string, std::string> > latentDetection_;
+  rapidjson::Value getValue(rapidjson::Document::AllocatorType &allocator);
 };
 
 struct DiagSetting {
 public:
+  enum UndetectedFaultsType { None = 0, AssumedSafe, AssumedDangerous};
+  enum MeasType { Functional = 0, Detection, LatentDetection};
   DiagSetting();
-  void buildSimStops(const std::vector<std::string> &fileNames);
   void buildDiagSetting(const rapidjson::Document &json);
+  void buildSimStops(const std::vector<std::string> &fileNames);
+  rapidjson::Value getValue(rapidjson::Document::AllocatorType &allocator);
   std::vector<std::string> getSimStopIds();
-  void setEnabled(bool b);
-  void setUndetectedFaults(const std::string &s);
-  void setVcFsmExport(bool b);
-  void setVcMeasSafe(boost::logic::tribool b);
-  void setVcDcKrf(boost::logic::tribool b);
-  void setVcDcKmpf(boost::logic::tribool b);
-  void setVcFsmExportFile(const std::string &s);
-  void addFailureMode(const FailureMode & f);
-  void removeFailureMode(const std::string &id);
-  void addFailFunc(const string &fid, const string &id, const string &type);
-  void removeFailFunc(const string &fid, const string &id);
-  void addFailDetec(const string &fid, const string &id, const string &type);
-  void removeFailDetec(const string &fid, const string &id);
+  void clear();
+public:
+  bool enabled_;
+  std::map<std::string, SimStop> simStops_;
 
-  rapidjson::Value getValue(rapidjson::AllocatorType &allocator);
-private:
-  bool enabled;
-  std::map<std::string, std::SimStop> simStops_;
-  VcFsmExport vcFsmExport_;
   std::string undetectedFaults_;
+  VcFsmExport vcFsmExport_;
   std::map<std::string, FailureMode> failureModes_;
+  boost::logic::tribool reportTestOrder_;
+  boost::logic::tribool faultDatabaseViewer_;
+  boost::logic::tribool faultDbViewer_;
+
 };
 #endif /* DIAGSETTING_H */

@@ -49,3 +49,18 @@ void QAfData::parseFaultList(const QString &fileName)
   }
   emit faultListChanged();
 }
+
+void QAfData::removeField(const char* field)
+{
+  jsonDoc_.RemoveMember(field);
+}
+
+void QAfData::setValueField(const char* field1, Value &value)
+{
+  if(!jsonDoc_.HasMember(field1)) {
+    jsonDoc_.AddMember(Value::StringRefType(field1), value,
+			    jsonDoc_.GetAllocator());
+  } else {
+    jsonDoc_[field1] = value;
+  }
+}
