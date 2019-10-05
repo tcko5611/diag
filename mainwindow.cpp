@@ -88,6 +88,7 @@ void MainWindow::buildTree()
     child = createChildItem(root_, itr->name, itr->value);
     root_->addChild(child);
   }
+  ui->treeWidget->expandAll();
 }
 
 

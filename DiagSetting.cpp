@@ -32,29 +32,23 @@ Value VcFsmExport::getValue(Document::AllocatorType &allocator)
     vv.SetString(vcFsmExportFile_.c_str(), vcFsmExportFile_.size(), allocator);
     v.AddMember("vc_fsm_export_file", vv, allocator);
   }
-  if (reportMeasuredSafe_ != indeterminate) {
-    if (reportMeasuredSafe_) {
-      v.AddMember("report_measured_safe", true, allocator);
-    }
-    else {
+  if (reportMeasuredSafe_) {
+    v.AddMember("report_measured_safe", true, allocator);
+  }
+  else if (!reportMeasuredSafe_) {
       v.AddMember("report_measured_safe", false, allocator);
-    }
   }
-  if (reportDcKrf_ != indeterminate) {
-    if (reportDcKrf_) {
-      v.AddMember("report_dc_krf", true, allocator);
-    }
-    else {
-      v.AddMember("report_dc_krf", false, allocator);
-    }
+  if (reportDcKrf_) {
+    v.AddMember("report_dc_krf", true, allocator);
   }
-  if (reportDcKmpf_ != indeterminate) {
-    if (reportDcKmpf_) {
-      v.AddMember("report_dc_kmpf", true, allocator);
-    }
-    else {
-      v.AddMember("report_dc_kmpf", false, allocator);
-    }
+  else if (!reportDcKrf_){
+    v.AddMember("report_dc_krf", false, allocator);
+  }
+  if (reportDcKmpf_) {
+    v.AddMember("report_dc_kmpf", true, allocator);
+  }
+  else if (!reportDcKmpf_) {
+    v.AddMember("report_dc_kmpf", false, allocator);
   }
   return v;
 }

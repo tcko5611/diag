@@ -24,7 +24,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>vc fsm export</string>
+      <string>&amp;vc fsm export</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -157,7 +157,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Fault Mode:</string>
+      <string>Failure Mode:</string>
      </property>
     </widget>
    </item>

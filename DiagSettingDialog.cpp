@@ -39,13 +39,14 @@ void FailureModeIdDelegate::setModelData(QWidget *editor, QAbstractItemModel *mo
 {
   QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
   QTableWidget *tb = static_cast<QTableWidget*>(this->parent());
+  QString oldId = oldId_;
   if (lineEdit->text().isEmpty()) {
     int row = index.row();
     tb->removeRow(row);
   } else {
     QItemDelegate::setModelData(editor, model, index);
   }
-  emit updateFailureModeId(oldId_, lineEdit->text());
+  emit updateFailureModeId(oldId, lineEdit->text());
 }
 
 FailureModeIdLabelDelegate::FailureModeIdLabelDelegate(QWidget *parent)
@@ -115,18 +116,18 @@ void MeasIdDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,con
   QComboBox *comboBox = static_cast<QComboBox*>(editor);
   QTableWidget *tb = static_cast<QTableWidget*>(this->parent());
   QString value = comboBox->currentText();
+  QString oldId = oldId_;
+  QTableWidgetItem *item= tb->item(index.row(), DiagSettingDialog::M_Category);
+  QString category = item->data(Qt::DisplayRole).toString();
   if (value.isEmpty()) {
     int row = index.row();
-    // int rowCount = tb->rowCount();
     tb->removeRow(row);
-    // need to remove table
-    
   }
   else {
     model->setData(index, value, Qt::EditRole);
-    QTableWidgetItem *item= tb->item(index.row(), DiagSettingDialog::M_Category);
-    emit updateMeasId(oldId_, value, item->data(Qt::DisplayRole).toString());
   }
+
+  emit updateMeasId(oldId, value, category);
 }
 
 MeasCategoryDelegate::MeasCategoryDelegate(QWidget *parent)
@@ -159,8 +160,10 @@ void MeasCategoryDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
   QTableWidget *tb = static_cast<QTableWidget*>(this->parent());
   QString category = comboBox->currentText();
   int row = index.row();
+  QString oldCategory = oldCategory_;
   QString id = tb->item(row, DiagSettingDialog::M_Id)->data(Qt::DisplayRole).toString();
-  emit updateMeasCategory(id, oldCategory_, category);
+  model->setData(index, category, Qt::DisplayRole);
+  emit updateMeasCategory(id, oldCategory, category);
 }
 
 /**
@@ -259,13 +262,13 @@ void DiagSettingDialog::setAfData(QAfData *qAf)
     QString s = setting_.vcFsmExport_.vcFsmExportFile_.c_str();
     ui->lineEditFile->setText(s);
     boost::logic::tribool b = setting_.vcFsmExport_.reportMeasuredSafe_;
-    int choise = (b == indeterminate) ? 0 : (b ? 1 : 2);
+    int choise = (b ? 1 : ((!b) ? 2 : 0));
     ui->comboBoxRMS->setCurrentIndex(choise);
     b = setting_.vcFsmExport_.reportDcKrf_;
-    choise = (b == indeterminate) ? 0 : (b ? 1 : 2);
+    choise = (b ? 1 : ((!b) ? 2 : 0));
     ui->comboBoxKrf->setCurrentIndex(choise);
     b = setting_.vcFsmExport_.reportDcKmpf_;
-    choise = (b == indeterminate) ? 0 : (b ? 1 : 2);
+    choise = (b ? 1 : ((!b) ? 2 : 0));
     ui->comboBoxKmpf->setCurrentIndex(choise);
   }
   for (auto &e : setting_.failureModes_) {
@@ -292,15 +295,12 @@ void DiagSettingDialog::restoreAfData()
     setting_.vcFsmExport_.enabled_ = true;
     setting_.vcFsmExport_.vcFsmExportFile_ = ui->lineEditFile->text().toStdString();
     int choise = ui->comboBoxRMS->currentIndex();
-    // setting_.vcFsmExport_.reportMeasuredSafe_ = (choise == 0) ? indeterminate : ((choise == 1)? true : false);
-    setting_.vcFsmExport_.reportMeasuredSafe_ = indeterminate;
-    setting_.vcFsmExport_.reportMeasuredSafe_ = true;
-    setting_.vcFsmExport_.reportMeasuredSafe_ = false;
-    choise = ui->comboBoxKrf->currentIndex();
+    setting_.vcFsmExport_.reportMeasuredSafe_ = (choise == 0) ? tribool(indeterminate) : ((choise == 1)? tribool(true) : tribool(false));
 
-    setting_.vcFsmExport_.reportDcKrf_ = ((choise == 0) ? indeterminate : ((choise == 1)? true_value : false_value));
+    choise = ui->comboBoxKrf->currentIndex();
+    setting_.vcFsmExport_.reportDcKrf_ = ((choise == 0) ? tribool(indeterminate) : ((choise == 1)? tribool(true) : tribool(false)));
     choise = ui->comboBoxKmpf->currentIndex();
-    setting_.vcFsmExport_.reportDcKmpf_ = (choise == 0) ? indeterminate : ((choise == 1)? true : false);   
+    setting_.vcFsmExport_.reportDcKmpf_ = (choise == 0) ? tribool(indeterminate) : ((choise == 1)? tribool(true) : tribool(false));   
   }
   else {
     setting_.vcFsmExport_.enabled_ = false;
@@ -363,6 +363,19 @@ void DiagSettingDialog::updateTableWidgetMeas(const QString &id)
       ui->tableWidgetMeas->setItem(rowCount - 1, i, item);
     }
   }
+  for (auto &e : f.latentDetection_) {
+    int rowCount = ui->tableWidgetMeas->rowCount();
+    ui->tableWidgetMeas->insertRow(rowCount-1);
+    string id = e.first;
+    SimStop simStop = setting_.simStops_[id];
+    QStringList l;
+    l << id.c_str() << simStop.check_.c_str() << simStop.measName_.c_str()
+      << simStop.min_.c_str() << simStop.max_.c_str() << "latent_detection";
+    for (int i = 0; i < 6; ++i) {
+      QTableWidgetItem *item = new QTableWidgetItem(l[i]);
+      ui->tableWidgetMeas->setItem(rowCount - 1, i, item);
+    }
+  }
 }
 
 void DiagSettingDialog::removeFailureMode(const QString &id)
@@ -372,7 +385,8 @@ void DiagSettingDialog::removeFailureMode(const QString &id)
 
 void DiagSettingDialog::insertFailureMode(const QString &id)
 {
-  setting_.failureModes_[id.toStdString()] = FailureMode(); 
+  setting_.failureModes_[id.toStdString()] = FailureMode();
+  setting_.failureModes_[id.toStdString()].id_ = id.toStdString();
 }
 
 void DiagSettingDialog::changeFailureModeId(const QString &oldId, const QString &newId)
@@ -494,8 +508,10 @@ void DiagSettingDialog::on_tableWidgetFailureMode_currentCellChanged(int current
   int row = ui->tableWidgetFailureMode->rowCount();
   if (currentRow == row) return;
   QTableWidgetItem *item = ui->tableWidgetFailureMode->item(currentRow, F_Id);
-  QString id = item->data(Qt::DisplayRole).toString();
-  updateTableWidgetMeas(id);
+  if (item) {
+    QString id = item->data(Qt::DisplayRole).toString();
+    updateTableWidgetMeas(id);
+  }
 }
 
 void DiagSettingDialog::accept()
