@@ -103,7 +103,6 @@ namespace Ui {
 }
 
 class QAfData;
-class DiagSetting;
 
 class DiagSettingDialog : public QDialog
 {
@@ -149,7 +148,7 @@ private:
   void removeMeas(const QString &id, const QString &category);
 private:
   Ui::DiagSettingDialog *ui;
-  DiagSetting setting_;
+  Diag::DiagSetting setting_;
   FailureModeIdDelegate *failureModeIdDelegate_;
   FailureModeIdLabelDelegate *failureModeIdLabelDelegate_;
   MeasIdDelegate *measIdDelegate_;

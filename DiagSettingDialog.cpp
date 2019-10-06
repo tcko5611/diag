@@ -4,7 +4,7 @@
 
 using namespace boost::logic;
 using namespace std;
-
+using namespace Diag;
 /**
  * Delegates implemetation
  */

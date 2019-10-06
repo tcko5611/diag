@@ -8,6 +8,7 @@
 using namespace std;
 using namespace boost::logic;
 using namespace rapidjson;
+using namespace Diag;
 
 VcFsmExport::VcFsmExport()
   : enabled_(false), reportMeasuredSafe_(indeterminate),

@@ -40,22 +40,22 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Fi&amp;le</string>
     </property>
     <addaction name="actionLoadConfig"/>
     <addaction name="actionLoadFdb"/>
    </widget>
    <widget class="QMenu" name="menuDiag">
     <property name="title">
-     <string>Diag</string>
+     <string>Dia&amp;g</string>
     </property>
     <addaction name="actionDiagSetting"/>
-    <addaction name="actionResult"/>
+    <addaction name="actionDiagResult"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuDiag"/>
@@ -63,22 +63,22 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionLoadConfig">
    <property name="text">
-    <string>Load Config</string>
+    <string>&amp;Load Config</string>
    </property>
   </action>
   <action name="actionLoadFdb">
    <property name="text">
-    <string>Load Fdb</string>
+    <string>Load &amp;Fdb</string>
    </property>
   </action>
   <action name="actionDiagSetting">
    <property name="text">
-    <string>Setting</string>
+    <string>&amp;Setting</string>
    </property>
   </action>
-  <action name="actionResult">
+  <action name="actionDiagResult">
    <property name="text">
-    <string>Result</string>
+    <string>&amp;Result</string>
    </property>
   </action>
  </widget>

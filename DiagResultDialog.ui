@@ -15,14 +15,82 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Failure mode:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxFailureMode"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Run tag:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxTag"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>98</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Settings:</string>
+      <string>sim_stop:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="settingsTableWidget"/>
+    <widget class="QTableWidget" name="tableWidgetSimStops">
+     <column>
+      <property name="text">
+       <string>id</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>check</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>meas name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>max</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>min</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>category</string>
+      </property>
+     </column>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="label_2">
@@ -32,7 +100,39 @@
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="resultsTableWidget"/>
+    <widget class="QTableWidget" name="tableWidgetResult">
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>150</number>
+     </attribute>
+     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>gid</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>functional ids</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>detection ids</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>latent detection ids</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>category</string>
+      </property>
+     </column>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

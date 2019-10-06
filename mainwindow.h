@@ -8,6 +8,7 @@
 class QAfData;
 class QTreeWidgetItem;
 class DiagSettingDialog;
+class DiagResultDialog;
 
 namespace Ui {
   class MainWindow;
@@ -36,11 +37,14 @@ private slots:
 
   void on_actionDiagSetting_triggered();
 
+  void on_actionDiagResult_triggered();
+
 private:
   Ui::MainWindow *ui;
   QAfData *qAf;
   QTreeWidgetItem *root_;
   DiagSettingDialog *diagSettingDialog_;
+  DiagResultDialog *diagResultDialog_;
 };
 
 #endif // MAINWINDOW_H
