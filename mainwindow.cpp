@@ -128,5 +128,5 @@ void MainWindow::on_actionDiagSetting_triggered()
 void MainWindow::on_actionDiagResult_triggered()
 {
   diagResultDialog_->setAfData(qAf);
-  diagResultDialog_->open();
+  diagResultDialog_->show();
 }

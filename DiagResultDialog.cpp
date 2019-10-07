@@ -1,4 +1,5 @@
 #include <QTableWidgetItem>
+#include <QDebug>
 #include "rapidjson/document.h"
 using namespace rapidjson;
 
@@ -28,14 +29,18 @@ void DiagResultDialog::setAfData(QAfData *qAf)
   result_.build(qAf->configJson(), qAf->flistJson());
 
   // set comboBox;
+  ui->comboBoxFailureMode->setCurrentIndex(-1);
   ui->comboBoxFailureMode->clear();
+  ui->comboBoxTag->setCurrentIndex(-1);
   ui->comboBoxTag->clear();
   QStringList strs;
   for (auto &e: result_.failureModeResults_) {
     strs << e.first.c_str();
   }
   ui->comboBoxFailureMode->addItems(strs);
+
   if (ui->comboBoxFailureMode->count() != 0) {
+    qDebug() << ui->comboBoxFailureMode->count();
     ui->comboBoxFailureMode->setCurrentIndex(0);
   }
   std::set<std::string> tags;
@@ -50,6 +55,7 @@ void DiagResultDialog::setAfData(QAfData *qAf)
   }
   ui->comboBoxTag->addItems(strs);
   if (ui->comboBoxTag->count() != 0) {
+    qDebug() << ui->comboBoxTag->count();
     ui->comboBoxTag->setCurrentIndex(0);
   }
   updateTableSimStops(ui->comboBoxFailureMode->currentText());
@@ -62,9 +68,9 @@ void DiagResultDialog::updateTableSimStops(const QString &failureMode)
   if (currentFailureMode_ == failureMode) return;
   ui->tableWidgetSimStops->setRowCount(0);
   currentFailureMode_ = failureMode;
-  FailureModeResult &f = result_.failureModeResults_[currentFailureMode_.toStdString()];
+  FailureModeResult &f = result_.failureModeResults_.at(currentFailureMode_.toStdString());
   for (auto &id : f.functional_) {
-    SimStop &s = result_.simStops_[id];
+    SimStop &s = result_.simStops_.at(id);
     QStringList strs;
     strs << id.c_str() << s.check_.c_str() << s.measName_.c_str()
 	 << s.max_.c_str() << s.min_.c_str() << "functional";
@@ -76,7 +82,7 @@ void DiagResultDialog::updateTableSimStops(const QString &failureMode)
     }
   }
   for (auto &id : f.detection_) {
-    SimStop &s = result_.simStops_[id];
+    SimStop &s = result_.simStops_.at(id);
     QStringList strs;
     strs << id.c_str() << s.check_.c_str() << s.measName_.c_str()
 	 << s.max_.c_str() << s.min_.c_str() << "detection";
@@ -88,7 +94,7 @@ void DiagResultDialog::updateTableSimStops(const QString &failureMode)
     }
   }
   for (auto &id : f.latentDetection_) {
-    SimStop &s = result_.simStops_[id];
+    SimStop &s = result_.simStops_.at(id);
     QStringList strs;
     strs << id.c_str() << s.check_.c_str() << s.measName_.c_str()
 	 << s.max_.c_str() << s.min_.c_str() << "latent_detection";
@@ -110,9 +116,9 @@ void DiagResultDialog::updateTableResult(const QString &failureMode, const QStri
     updateTableSimStops(failureMode);
   }
   ui->tableWidgetResult->setRowCount(0);
-  FailureModeResult &f = result_.failureModeResults_[currentFailureMode_.toStdString()];
+  FailureModeResult &f = result_.failureModeResults_.at(currentFailureMode_.toStdString());
   currentTag_ = tag;
-  TagResult &t = f.tagResults_[tag.toStdString()];
+  TagResult &t = f.tagResults_.at(tag.toStdString());
   for (auto &fr : t.faultResult_) {
     QStringList strs;
     strs << QString::number(fr.gid_) << fr.functionalIds_.c_str()
@@ -123,7 +129,7 @@ void DiagResultDialog::updateTableResult(const QString &failureMode, const QStri
     for (int i = R_Gid; i < ResultColumnEnd; ++i) {
       QTableWidgetItem *item = new  QTableWidgetItem(strs[i]);
       if (fr.category_ == "dangerous_undetected") {
-	item->setBackground(Qt::red);
+        item->setBackground(Qt::red);
       }
       ui->tableWidgetResult->setItem(row, i, item);
     }
@@ -133,11 +139,13 @@ void DiagResultDialog::updateTableResult(const QString &failureMode, const QStri
 
 void DiagResultDialog::on_comboBoxFailureMode_currentIndexChanged(const QString &failureMode)
 {
+  if (failureMode.isEmpty()) return;
   updateTableSimStops(failureMode);
   updateTableResult(failureMode, currentTag_);
 }
 
 void DiagResultDialog::on_comboBoxTag_currentIndexChanged(const QString &tag)
 {
+  if (tag.isEmpty()) return;
   updateTableResult(currentFailureMode_, tag);
 }
