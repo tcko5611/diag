@@ -1,5 +1,7 @@
 #ifndef DIAGCOMMON_H /* -*-c++-*- */
 #define DIAGCOMMON_H
+#include <string>
+
 namespace Diag {
   struct SimStop {
     std::string id_;
@@ -9,5 +11,9 @@ namespace Diag {
     std::string max_;
     std::string error_;
   };
+  std::string removeLastIncorrectCharater(const std::string &s);
+  SimStop buildSimStop(const std::string& line) ;
 }
+
+
 #endif /* DIAGCOMMON_H */

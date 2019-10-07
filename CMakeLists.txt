@@ -21,7 +21,8 @@ add_executable(diag main.cpp mainwindow.h mainwindow.cpp mainwindow.ui
   JsonUtils.h JsonUtils.cpp QAfData.h QAfData.cpp DiagSetting.h DiagSetting.cpp
   DiagSettingDialog.ui DiagSettingDialog.h DiagSettingDialog.cpp
   DiagResult.h DiagResult.cpp
-  DiagResultDialog.ui DiagResultDialog.h DiagResultDialog.cpp)
+  DiagResultDialog.ui DiagResultDialog.h DiagResultDialog.cpp
+  DiagCommon.h DiagCommon.cpp)
 
 target_include_directories(diag PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_BINARY_DIR})

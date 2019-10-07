@@ -1,5 +1,4 @@
 #include <QTableWidgetItem>
-#include <QDebug>
 #include "rapidjson/document.h"
 using namespace rapidjson;
 
@@ -40,7 +39,6 @@ void DiagResultDialog::setAfData(QAfData *qAf)
   ui->comboBoxFailureMode->addItems(strs);
 
   if (ui->comboBoxFailureMode->count() != 0) {
-    qDebug() << ui->comboBoxFailureMode->count();
     ui->comboBoxFailureMode->setCurrentIndex(0);
   }
   std::set<std::string> tags;
@@ -55,7 +53,6 @@ void DiagResultDialog::setAfData(QAfData *qAf)
   }
   ui->comboBoxTag->addItems(strs);
   if (ui->comboBoxTag->count() != 0) {
-    qDebug() << ui->comboBoxTag->count();
     ui->comboBoxTag->setCurrentIndex(0);
   }
   updateTableSimStops(ui->comboBoxFailureMode->currentText());
