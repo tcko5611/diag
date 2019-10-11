@@ -1,0 +1,979 @@
+{
+    "fault_list": [
+        {
+            "id": 0,
+            "gid": 0,
+            "selected": false,
+            "fault_info": [
+                {
+                    "type": "fault_free"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "gid": 1,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mn2",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.0",
+                        "xsrhw.x1.b"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mynch",
+                        "nfin": 2,
+                        "w": 1e-8,
+                        "gate_cap": 2.01745e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_1_1_1.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mn2 -type short -node s g -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "gid": 2,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mn2",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.0",
+                        "xsrhw.x1.x"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mynch",
+                        "nfin": 2,
+                        "w": 1e-8,
+                        "gate_cap": 2.01745e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_2_2_2.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mn2 -type short -node s d -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "gid": 3,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mn1",
+                    "ports": [
+                        "d",
+                        "s"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.y",
+                        "xsrhw.x1.x"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mynch",
+                        "nfin": 2,
+                        "w": 1e-8,
+                        "gate_cap": 2.01745e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_3_3_3.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mn1 -type short -node d s -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "gid": 4,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mp2",
+                    "ports": [
+                        "g",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.b",
+                        "xsrhw.x1.y"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mypch",
+                        "nfin": 4,
+                        "w": 1e-8,
+                        "gate_cap": 2.01027e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_4_4_4.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mp2 -type short -node g d -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out100n",
+                            "value": "9.999990e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm1",
+                            "value": "1.000000e+00",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo3",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out300n",
+                            "value": "3.317390e-06",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm3",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm3",
+                            "value": "1.000000e+00",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo4",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out400n",
+                            "value": "6.277050e-06",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm4",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm4",
+                            "value": "1.000000e+00",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "gid": 5,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mn2",
+                    "ports": [
+                        "g",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.b",
+                        "xsrhw.x1.x"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mynch",
+                        "nfin": 2,
+                        "w": 1e-8,
+                        "gate_cap": 2.01745e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_5_5_5.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mn2 -type short -node g d -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out100n",
+                            "value": "1.150730e+00",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm1",
+                            "value": "1.000000e+00",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "gid": 6,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mp1",
+                    "ports": [
+                        "g",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.a",
+                        "xsrhw.x1.y"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mypch",
+                        "nfin": 4,
+                        "w": 1e-8,
+                        "gate_cap": 2.01027e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_6_6_6.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mp1 -type short -node g d -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 2.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out100n",
+                            "value": "9.999990e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm1",
+                            "value": "1.000000e+00",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out200n",
+                            "value": "3.462280e-06",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm2",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm2",
+                            "value": "9.999990e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CL",
+                            "id": "fo4",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out400n",
+                            "value": "6.455370e-06",
+                            "violation_tag": "",
+                            "violation_cond": "< 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm4",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm4",
+                            "value": "9.999990e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "gid": 6,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mn1",
+                    "ports": [
+                        "g",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.a",
+                        "xsrhw.x1.y"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mynch",
+                        "nfin": 2,
+                        "w": 1e-8,
+                        "gate_cap": 2.01745e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "gid": 8,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mn1",
+                    "ports": [
+                        "g",
+                        "s"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.a",
+                        "xsrhw.x1.x"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mynch",
+                        "nfin": 2,
+                        "w": 1e-8,
+                        "gate_cap": 2.01745e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_8_8_8.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mn1 -type short -node g s -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out100n",
+                            "value": "1.150730e+00",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm1",
+                            "value": "1.000000e+00",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "gid": 9,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mp1",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.vdd",
+                        "xsrhw.x1.a"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mypch",
+                        "nfin": 4,
+                        "w": 1e-8,
+                        "gate_cap": 2.01027e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_9_9_9.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mp1 -type short -node s g -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "gid": 10,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mp2",
+                    "ports": [
+                        "s",
+                        "g"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.vdd",
+                        "xsrhw.x1.b"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mypch",
+                        "nfin": 4,
+                        "w": 1e-8,
+                        "gate_cap": 2.01027e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_10_10_10.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mp2 -type short -node s g -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 1.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "NC",
+                            "id": "",
+                            "signal": "",
+                            "type": "not_covered",
+                            "name": "",
+                            "value": "",
+                            "violation_tag": "",
+                            "violation_cond": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "gid": 11,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mp1",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.vdd",
+                        "xsrhw.x1.y"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mypch",
+                        "nfin": 4,
+                        "w": 1e-8,
+                        "gate_cap": 2.01027e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ],
+            "run_script": [
+                {
+                    "tag": "run0",
+                    "sampled": false,
+                    "reduced": true,
+                    "weight_scale": 1.0,
+                    "path": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/fault_mos_short_11_11_11.csh",
+                    "command": "inject_fault -inst xsrhw.x1.mp1 -type short -node s d -res_val 1.000000e-02 -cap_val 1.000000e-20 -weight 2.000000e+00 -fault_type mos_short"
+                }
+            ],
+            "result": [
+                {
+                    "tag": "run0",
+                    "failure_mode": [
+                        {
+                            "id": "FM001",
+                            "label": "my failure mode",
+                            "covered": true,
+                            "detected": true,
+                            "latent_detected": false,
+                            "category": "dangerous_detected"
+                        },
+                        {
+                            "id": "FM002",
+                            "label": "my failure mode",
+                            "covered": false,
+                            "detected": false,
+                            "latent_detected": false,
+                            "category": "safe_undetected"
+                        }
+                    ],
+                    "details": [
+                        {
+                            "code": "CU",
+                            "id": "fo1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "out100n",
+                            "value": "9.999990e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        },
+                        {
+                            "code": "CU",
+                            "id": "sm1",
+                            "signal": "",
+                            "type": "meas",
+                            "name": "alarm1",
+                            "value": "9.999980e-01",
+                            "violation_tag": "",
+                            "violation_cond": "> 0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "gid": 11,
+            "selected": true,
+            "fault_info": [
+                {
+                    "type": "mos_short",
+                    "tag": "mos_short_dgs",
+                    "instance_name": "xsrhw.x1.mp2",
+                    "ports": [
+                        "s",
+                        "d"
+                    ],
+                    "port_names": [
+                        "xsrhw.x1.vdd",
+                        "xsrhw.x1.y"
+                    ],
+                    "rshort": 0.01,
+                    "cshort": 1e-20,
+                    "likelihood_info": {
+                        "model_name": "mypch",
+                        "nfin": 4,
+                        "w": 1e-8,
+                        "gate_cap": 2.01027e-16,
+                        "m": 1,
+                        "weight": 1.0
+                    }
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "tags": [
+            "run0"
+        ],
+        "nominal": true,
+        "nominal_only": false,
+        "sampled": false,
+        "collapsed": true,
+        "user_defined": false,
+        "diagnostic_coverage": true,
+        "latent_diagnostic_coverage": false,
+        "ready_for_ldc_step4": false,
+        "total_weight": 12.0,
+        "weight_scale": 1.0,
+        "sample_seed": 2109087985,
+        "sample_size": 0,
+        "out_prefix": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/"
+    },
+    "tagdata": [
+        {
+            "tag": "run0",
+            "out_prefix": "/slowfs/hs_scr1/tcko/customfault/lfm4/cf_simulation/run0/",
+            "complete": true
+        }
+    ]
+}

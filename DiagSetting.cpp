@@ -142,7 +142,7 @@ void DiagSetting::buildDiagSetting(const rapidjson::Document &json)
     copy(istream_iterator<string>(iss),
          istream_iterator<string>(),
          back_inserter(tokens));
-    for (int i = 0; i < tokens.size(); ++i) {
+    for (unsigned i = 0; i < tokens.size(); ++i) {
       if (tokens[i] == "-c") {
         fileNames.push_back(tokens[++i]);
         break;

@@ -44,7 +44,7 @@ void DiagResult::build(const rapidjson::Document &config,
     copy(istream_iterator<string>(iss),
          istream_iterator<string>(),
          back_inserter(tokens));
-    for (int i = 0; i < tokens.size(); ++i) {
+    for (unsigned i = 0; i < tokens.size(); ++i) {
       if (tokens[i] == "-c") {
         fileNames.push_back(tokens[++i]);
         break;
@@ -99,40 +99,40 @@ void DiagResult::build(const rapidjson::Document &config,
       string latentDetectionIds;
       vector<std::string> simStopIds;
       for (auto &vv : v["result"].GetArray()) {
-	tag = vv["tag"].GetString();
-	simStopIds.clear();
-	for (auto &vvv : vv["details"].GetArray()) {
-	  simStopIds.push_back(vvv["id"].GetString());
-	}
-	for (auto &vvv : vv["failure_mode"].GetArray()) {
-	  failureModeId = vvv["id"].GetString();
-	  category = vvv["category"].GetString();
-	}
-	FailureModeResult &f = failureModeResults_[failureModeId];
-	FaultResult fr;
-	fr.gid_ = gid;
-	fr.failureModeId_ = failureModeId;
-	fr.tag_ = tag;
-	fr.category_ = category;
-	for (auto id : simStopIds) {
-	  if (f.functional_.find(id) != f.functional_.end()) {
-	    fr.functionalIds_ += id + " ";
-	  }
-	  else if (f.detection_.find(id) != f.detection_.end()) {
-	      fr.detectionIds_ += id + " ";
-	  }
-	  else if (f.latentDetection_.find(id) != f.latentDetection_.end()) {
-	      fr.latentDetectionIds_ += id + " ";
-	  }
-	}
-	
-	if (f.tagResults_.find(tag) == f.tagResults_.end()) {
-	  TagResult r;
-	  r.tag_ = tag;
-	  f.tagResults_[tag] = r;
-	}
-	TagResult &r = f.tagResults_[tag];
-	r.faultResult_.push_back(fr);
+        tag = vv["tag"].GetString();
+        simStopIds.clear();
+        for (auto &vvv : vv["details"].GetArray()) {
+          simStopIds.push_back(vvv["id"].GetString());
+        }
+        for (auto &vvv : vv["failure_mode"].GetArray()) {
+          failureModeId = vvv["id"].GetString();
+          category = vvv["category"].GetString();
+          FailureModeResult &f = failureModeResults_[failureModeId];
+          FaultResult fr;
+          fr.gid_ = gid;
+          fr.failureModeId_ = failureModeId;
+          fr.tag_ = tag;
+          fr.category_ = category;
+          for (auto id : simStopIds) {
+            if (f.functional_.find(id) != f.functional_.end()) {
+              fr.functionalIds_ += id + " ";
+            }
+            else if (f.detection_.find(id) != f.detection_.end()) {
+              fr.detectionIds_ += id + " ";
+            }
+            else if (f.latentDetection_.find(id) != f.latentDetection_.end()) {
+              fr.latentDetectionIds_ += id + " ";
+            }
+          }
+          
+          if (f.tagResults_.find(tag) == f.tagResults_.end()) {
+            TagResult r;
+            r.tag_ = tag;
+            f.tagResults_[tag] = r;
+          }
+          TagResult &r = f.tagResults_[tag];
+          r.faultResult_.push_back(fr);
+        }
       }
     }
   }  

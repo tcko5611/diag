@@ -30,7 +30,8 @@ public:
   explicit DiagResultDialog(QWidget *parent = 0);
   ~DiagResultDialog();
   void setAfData(QAfData *qAf);
-  
+  void cleanUiContain();
+                       
 private slots:
   void on_comboBoxFailureMode_currentIndexChanged(const QString &arg1);
 

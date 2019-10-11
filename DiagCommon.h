@@ -15,5 +15,4 @@ namespace Diag {
   SimStop buildSimStop(const std::string& line) ;
 }
 
-
 #endif /* DIAGCOMMON_H */

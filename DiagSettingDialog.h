@@ -121,9 +121,9 @@ public:
   void setAfData(QAfData *qAf);
   void restoreAfData();
   QStringList getSimStopIds();
-  void clear();
   void updateTableWidgetMeas(const QString &failureModeId);
-
+  void cleanUiContain();
+                       
 public slots:
   void onUpdateFailureModeId(const QString &, const QString&);
   void onUpdateFailureModeIdLabel(const QString &id, const QString &idLabel);

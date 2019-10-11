@@ -28,7 +28,7 @@ SimStop Diag::buildSimStop(const string& line)
   copy(istream_iterator<string>(iss),
        istream_iterator<string>(),
        back_inserter(tokens));
-  for (int i = 1; i < tokens.size(); ++i) {
+  for (unsigned i = 1; i < tokens.size(); ++i) {
     if (tokens[i] == "-check") {
       d.check_ = removeLastIncorrectCharater(tokens[++i]);
     }

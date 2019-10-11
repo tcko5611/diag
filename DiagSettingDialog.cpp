@@ -62,7 +62,6 @@ QWidget* FailureModeIdLabelDelegate::createEditor(QWidget *parent, const QStyleO
 
 void FailureModeIdLabelDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-  QTableWidget *tb = qobject_cast<QTableWidget*>(this->parent());
   QItemDelegate::setEditorData(editor,index);
 }
 
@@ -216,7 +215,7 @@ DiagSettingDialog::~DiagSettingDialog()
   delete ui;
 }
 
-void DiagSettingDialog::clear()
+void DiagSettingDialog::cleanUiContain()
 {
   // clear ui
   ui->checkBox->setChecked(false);
@@ -234,7 +233,7 @@ void DiagSettingDialog::clear()
   }
   rowCount = ui->tableWidgetMeas->rowCount();
   while (rowCount > 1) {
-    ui->tableWidgetFailureMode->removeRow(0);
+    ui->tableWidgetMeas->removeRow(0);
     rowCount = ui->tableWidgetMeas->rowCount();
   }
   // setting clear
@@ -245,7 +244,7 @@ void DiagSettingDialog::clear()
 void DiagSettingDialog::setAfData(QAfData *qAf)
 {
   qAf_ = qAf;
-  clear();
+  cleanUiContain();
   // const Document& configJson = qAf->configJson();
   setting_.buildDiagSetting(qAf->configJson());
   if (!setting_.enabled_) return;
@@ -308,12 +307,12 @@ void DiagSettingDialog::restoreAfData()
   Document::AllocatorType& allocator = qAf_->getAllocator();
   if (!ui->checkBox->checkState()) {
     qAf_->removeField("diagnostic_coverage");
-    emit qAf_->configJsonChanged();
+    // emit qAf_->configJsonChanged();
     return;
   }
   Value v = setting_.getValue(allocator);
   qAf_->setValueField("diagnostic_coverage", v);
-  emit qAf_->configJsonChanged();
+  // emit qAf_->configJsonChanged();
 }
 
 QStringList DiagSettingDialog::getSimStopIds()
@@ -519,3 +518,4 @@ void DiagSettingDialog::accept()
   restoreAfData();
   QDialog::accept();
 }
+

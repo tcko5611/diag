@@ -14,6 +14,8 @@ DiagResultDialog::DiagResultDialog(QWidget *parent) :
     ui(new Ui::DiagResultDialog)
 {
   ui->setupUi(this);
+  QHeaderView *header = ui->tableWidgetResult->horizontalHeader();
+  connect(header, SIGNAL(sectionClicked(int)), ui->tableWidgetResult, SLOT (sortByColumn(int)));
 }
 
 DiagResultDialog::~DiagResultDialog()
@@ -62,7 +64,7 @@ void DiagResultDialog::setAfData(QAfData *qAf)
 
 void DiagResultDialog::updateTableSimStops(const QString &failureMode)
 {
-  if (currentFailureMode_ == failureMode) return;
+  if ((failureMode.isEmpty()) || (currentFailureMode_ == failureMode)) return;
   ui->tableWidgetSimStops->setRowCount(0);
   currentFailureMode_ = failureMode;
   FailureModeResult &f = result_.failureModeResults_.at(currentFailureMode_.toStdString());
@@ -107,6 +109,7 @@ void DiagResultDialog::updateTableSimStops(const QString &failureMode)
 
 void DiagResultDialog::updateTableResult(const QString &failureMode, const QString &tag)
 {
+  if (failureMode.isEmpty() || tag.isEmpty()) return;
   if ((currentFailureMode_ == failureMode) &&
       (currentTag_ == tag)) return;
   if (currentFailureMode_ != failureMode) {
@@ -137,7 +140,6 @@ void DiagResultDialog::updateTableResult(const QString &failureMode, const QStri
 void DiagResultDialog::on_comboBoxFailureMode_currentIndexChanged(const QString &failureMode)
 {
   if (failureMode.isEmpty()) return;
-  updateTableSimStops(failureMode);
   updateTableResult(failureMode, currentTag_);
 }
 
@@ -145,4 +147,14 @@ void DiagResultDialog::on_comboBoxTag_currentIndexChanged(const QString &tag)
 {
   if (tag.isEmpty()) return;
   updateTableResult(currentFailureMode_, tag);
+}
+
+void DiagResultDialog::cleanUiContain()
+{
+  ui->comboBoxFailureMode->clear();
+  ui->comboBoxTag->clear();
+  ui->tableWidgetResult->setRowCount(0);
+  ui->tableWidgetSimStops->setRowCount(0);
+  currentFailureMode_ = "";
+  currentTag_ = "";
 }
