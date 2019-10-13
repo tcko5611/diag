@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 #include <boost/logic/tribool.hpp>
 #include "rapidjson/document.h"
 #include "DiagCommon.h"
@@ -23,16 +24,17 @@ namespace Diag {
   struct FailureMode {
     std::string id_;
     std::string idLabel_;
-    std::map<std::string, std::pair<std::string, std::string> > functional_;
-    std::map<std::string, std::pair<std::string, std::string> > detection_;
-    std::map<std::string, std::pair<std::string, std::string> > latentDetection_;
+    std::set<std::string> functional_;
+    std::set<std::string> detection_;
+    std::set<std::string> latentDetection_;
     rapidjson::Value getValue(rapidjson::Document::AllocatorType &allocator);
   };
   
   struct DiagSetting {
   public:
     enum UndetectedFaultsType { None = 0, AssumedSafe, AssumedDangerous};
-    enum MeasType { Functional = 0, Detection, LatentDetection};
+    enum MeasType { Meas = 0, Vec, Dwc};
+    enum OutputType { Functional = 0, Detection, LatentDetection};
     DiagSetting();
     void buildDiagSetting(const rapidjson::Document &json);
     void buildSimStops(const std::vector<std::string> &fileNames);

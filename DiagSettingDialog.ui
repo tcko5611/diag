@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>626</width>
-    <height>583</height>
+    <width>727</width>
+    <height>618</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -163,6 +163,9 @@
    </item>
    <item>
     <widget class="QTableWidget" name="tableWidgetFailureMode">
+     <property name="editTriggers">
+      <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+     </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>200</number>
      </attribute>
@@ -191,12 +194,15 @@
    <item>
     <widget class="QLabel" name="label_7">
      <property name="text">
-      <string>Measurement:</string>
+      <string>Ouputs:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="tableWidgetMeas">
+    <widget class="QTableWidget" name="tableWidgetOutput">
+     <property name="editTriggers">
+      <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+     </property>
      <row>
       <property name="text">
        <string/>
@@ -204,12 +210,17 @@
      </row>
      <column>
       <property name="text">
+       <string>type</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>id</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>check</string>
+       <string>signal</string>
       </property>
      </column>
      <column>
@@ -237,6 +248,11 @@
        <string>&lt;Click to add&gt;</string>
       </property>
      </item>
+     <item row="0" column="1">
+      <property name="text">
+       <string/>
+      </property>
+     </item>
     </widget>
    </item>
    <item>
@@ -251,7 +267,7 @@
    </item>
   </layout>
   <zorder>label_7</zorder>
-  <zorder>tableWidgetMeas</zorder>
+  <zorder>tableWidgetOutput</zorder>
   <zorder>groupBox</zorder>
   <zorder>buttonBox</zorder>
   <zorder>label</zorder>

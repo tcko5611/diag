@@ -65,20 +65,29 @@ void DiagResult::build(const rapidjson::Document &config,
       f.id_ = v["id"].GetString();
       if (v.HasMember("functional_output")) {
         for (auto &vv : v["functional_output"].GetArray()) {
-          string id = vv["id"].GetString(), type = vv["type"].GetString();
-          f.functional_.insert(id);
+          string type = vv["type"].GetString();
+	  if (type == "meas") {
+	    string id = vv["id"].GetString();
+	    f.functional_.insert(id);
+	  }
         }
       }
       if (v.HasMember("detection_output")) {
         for (auto &vv : v["detection_output"].GetArray()) {
-          string id = vv["id"].GetString(), type = vv["type"].GetString();
-          f.detection_.insert(id);
+          string type = vv["type"].GetString();
+	  if (type == "meas") {
+	    string id = vv["id"].GetString();
+	    f.detection_.insert(id);
+	  }
         }
       }
       if (v.HasMember("latent_detection_output")) {
         for (auto &vv : v["latent_detection_output"].GetArray()) {
-          string id = vv["id"].GetString(), type = vv["type"].GetString();
-          f.latentDetection_.insert(id);
+          string type = vv["type"].GetString();
+	  if (type == "meas") {
+	    string id = vv["id"].GetString();
+	    f.latentDetection_.insert(id);
+	  }
         }
       }
 

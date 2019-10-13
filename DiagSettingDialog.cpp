@@ -1,3 +1,5 @@
+#include <QRegExp>
+#include <QRegExpValidator>
 #include "QAfData.h"
 #include "DiagSettingDialog.h"
 #include "ui_DiagSettingDialog.h"
@@ -62,7 +64,7 @@ QWidget* FailureModeIdLabelDelegate::createEditor(QWidget *parent, const QStyleO
 
 void FailureModeIdLabelDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-  QItemDelegate::setEditorData(editor,index);
+  QItemDelegate::setEditorData(editor, index);
 }
 
 void FailureModeIdLabelDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,const QModelIndex &index) const
@@ -75,14 +77,106 @@ void FailureModeIdLabelDelegate::setModelData(QWidget *editor, QAbstractItemMode
   emit updateFailureModeIdLabel(id, lineEdit->text());
 }
 
-
-MeasIdDelegate::MeasIdDelegate(QWidget *parent)
+OutputTypeDelegate::OutputTypeDelegate(QWidget *parent)
   :QItemDelegate(parent)
 {
 }
 
 
-QWidget* MeasIdDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,const QModelIndex &index) const
+QWidget* OutputTypeDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+  QComboBox *editor = new QComboBox(parent);
+  QTableWidget * tb = qobject_cast<QTableWidget*>(this->parent());
+  DiagSettingDialog *dlg = qobject_cast<DiagSettingDialog*>(tb->parent());
+  // editor->addItems(dlg->getOutputTypes());
+  return editor;
+}
+
+void OutputTypeDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+{
+  QComboBox *comboBox = qobject_cast<QComboBox*>(editor);
+  QTableWidget *tb = qobject_cast<QTableWidget*>(this->parent());
+  DiagSettingDialog *dlg = qobject_cast<DiagSettingDialog*>(tb->parent());
+  oldType_ = index.model()->data(index, Qt::EditRole).toString();
+  int row = index.row();
+  int rowCount = tb->rowCount();
+  if (row == rowCount - 1) {
+    tb->insertRow(row);
+    tb->clearSelection();
+    QTableWidgetItem *item = new QTableWidgetItem("functional");
+    tb->setItem(row, DiagSettingDialog::O_Category, item);
+    comboBox->addItems(dlg->getOutputTypes());
+  }
+  else {
+    QStringList l;
+    l << "" << oldType_;
+    comboBox->addItems(l);
+  }
+  comboBox->setCurrentText(oldType_);
+}
+
+void OutputTypeDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,const QModelIndex &index) const
+{
+  QComboBox *comboBox = static_cast<QComboBox*>(editor);
+  QTableWidget *tb = static_cast<QTableWidget*>(this->parent());
+  QString value = comboBox->currentText();
+  if (value.isEmpty()) {
+    int row = index.row();
+    if (oldType_ == "meas" || oldType_ == "vec" || oldType_ == "dwc") {
+      QString typeId;
+      if (oldType_ == "meas") {
+	typeId = oldType_ + "@=" +
+	  tb->item(row, DiagSettingDialog::O_Id)->data(Qt::DisplayRole).toString();
+      }
+      else {
+	typeId = oldType_ + "@=" +
+	  tb->item(row, DiagSettingDialog::O_Signal)->data(Qt::DisplayRole).toString();
+      }
+      QString category = tb->item(row, DiagSettingDialog::O_Category)->data(Qt::DisplayRole).toString();
+      emit updateOutputTypeId(typeId, "", category);
+    }
+    tb->removeRow(row);
+  }
+  else {
+    model->setData(index, value, Qt::EditRole);
+    for (int i = DiagSettingDialog::O_Id;
+	 i < DiagSettingDialog::OutputColumnEnd; ++i) {
+      QTableWidgetItem *item = tb->item(index.row(), i);
+      if (item == 0) {
+	item = new QTableWidgetItem();
+	item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+	tb->setItem(index.row(), i, item);
+      }
+    }
+    QTableWidgetItem *item = tb->item(index.row(), DiagSettingDialog::O_Category);
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+    if (value == "meas") {
+      QTableWidgetItem *item = tb->item(index.row(), DiagSettingDialog::O_Id);
+      if (item == 0) {
+	item = new QTableWidgetItem();
+	tb->setItem(index.row(), DiagSettingDialog::O_Id, item);
+      }
+      item->setFlags(item->flags() | Qt::ItemIsEditable);
+      tb->setCurrentItem(item);
+    }
+    else {
+      QTableWidgetItem *item = tb->item(index.row(), DiagSettingDialog::O_Signal);
+      if (item == 0) {
+	item = new QTableWidgetItem();
+	tb->setItem(index.row(), DiagSettingDialog::O_Signal, item);
+      }
+      item->setFlags(item->flags() | Qt::ItemIsEditable);
+      tb->setCurrentItem(item);
+    }
+  }
+}
+
+OutputIdDelegate::OutputIdDelegate(QWidget *parent)
+  : QItemDelegate(parent)
+{
+}
+
+QWidget* OutputIdDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,const QModelIndex &index) const
 {
   QComboBox *editor = new QComboBox(parent);
   QTableWidget * tb = qobject_cast<QTableWidget*>(this->parent());
@@ -91,50 +185,76 @@ QWidget* MeasIdDelegate::createEditor(QWidget *parent, const QStyleOptionViewIte
   return editor;
 }
 
-void MeasIdDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void OutputIdDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
   QComboBox *comboBox = qobject_cast<QComboBox*>(editor);
   QTableWidget *tb = qobject_cast<QTableWidget*>(this->parent());
-  int row = index.row();
-  int rowCount = tb->rowCount();
-  if (row == rowCount -1) {
-    tb->insertRow(row);
-    tb->clearSelection();
-    oldId_ = "";
-    QTableWidgetItem *item = new QTableWidgetItem("functional");
-    tb->setItem(row, DiagSettingDialog::M_Category, item);
-  } else {
-    QItemDelegate::setEditorData(editor, index);
-    oldId_ = index.model()->data(index, Qt::EditRole).toString();
-  }
+  oldId_ = index.model()->data(index, Qt::EditRole).toString();
   comboBox->setCurrentText(oldId_);
 }
 
-void MeasIdDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,const QModelIndex &index) const
+void OutputIdDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,const QModelIndex &index) const
 {
   QComboBox *comboBox = static_cast<QComboBox*>(editor);
   QTableWidget *tb = static_cast<QTableWidget*>(this->parent());
   QString value = comboBox->currentText();
-  QString oldId = oldId_;
-  QTableWidgetItem *item= tb->item(index.row(), DiagSettingDialog::M_Category);
+  QTableWidgetItem *item = tb->item(index.row(), DiagSettingDialog::O_Type);
+  QString type = item->data(Qt::DisplayRole).toString();
+  item = tb->item(index.row(), DiagSettingDialog::O_Category);
   QString category = item->data(Qt::DisplayRole).toString();
-  if (value.isEmpty()) {
-    int row = index.row();
-    tb->removeRow(row);
+  QString oldTypeId;
+  if (!oldId_.isEmpty()) {
+    oldTypeId = type + "@=" + oldId_;
   }
-  else {
-    model->setData(index, value, Qt::EditRole);
-  }
-
-  emit updateMeasId(oldId, value, category);
+  QString newTypeId = type + "@=" + value;
+  model->setData(index, value, Qt::EditRole);
+  emit updateOutputTypeId(oldTypeId, newTypeId, category);
 }
 
-MeasCategoryDelegate::MeasCategoryDelegate(QWidget *parent)
+OutputSignalDelegate::OutputSignalDelegate(QWidget *parent)
+    :QItemDelegate(parent)
+{
+}
+
+QWidget* OutputSignalDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,const QModelIndex &index) const
+{
+  QLineEdit *l = new QLineEdit(parent);
+  QRegExp r(".+");
+  QRegExpValidator *re = new QRegExpValidator(r, l);
+  l->setValidator(re);
+  return l;
+}
+
+void OutputSignalDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+{
+  QItemDelegate::setEditorData(editor, index);
+  oldSignal_ = index.model()->data(index, Qt::EditRole).toString();
+}
+
+void OutputSignalDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,const QModelIndex &index) const
+{
+  QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+  QTableWidget *tb = static_cast<QTableWidget*>(this->parent());
+  QString value = lineEdit->text();
+  QTableWidgetItem *item = tb->item(index.row(), DiagSettingDialog::O_Type);
+  QString type = item->data(Qt::DisplayRole).toString();
+  QString oldTypeSignal;
+  if (!oldSignal_.isEmpty()) {
+    oldTypeSignal = type + "@=" + oldSignal_;
+  }
+  model->setData(index, value, Qt::EditRole);
+  item = tb->item(index.row(), DiagSettingDialog::O_Category);
+  QString category = item->data(Qt::DisplayRole).toString();
+  QString newTypeSignal = type + "@=" + value;
+  emit updateOutputTypeId(oldTypeSignal, newTypeSignal, category);
+}
+
+OutputCategoryDelegate::OutputCategoryDelegate(QWidget *parent)
   :QItemDelegate(parent)
 {
 }
 
-QWidget *MeasCategoryDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,const QModelIndex &index) const
+QWidget *OutputCategoryDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,const QModelIndex &index) const
 {
   QComboBox *editor = new QComboBox(parent);
 
@@ -144,7 +264,7 @@ QWidget *MeasCategoryDelegate::createEditor(QWidget *parent, const QStyleOptionV
   return editor;
 }
 
-void MeasCategoryDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void OutputCategoryDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
   QComboBox *comboBox = qobject_cast<QComboBox*>(editor);
   QItemDelegate::setEditorData(editor, index);
@@ -152,7 +272,7 @@ void MeasCategoryDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
   comboBox->setCurrentText(oldCategory_);
 }
 
-void MeasCategoryDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
+void OutputCategoryDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                     const QModelIndex &index) const
 {
   QComboBox *comboBox = static_cast<QComboBox*>(editor);
@@ -160,13 +280,19 @@ void MeasCategoryDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
   QString category = comboBox->currentText();
   int row = index.row();
   QString oldCategory = oldCategory_;
-  QString id = tb->item(row, DiagSettingDialog::M_Id)->data(Qt::DisplayRole).toString();
+  QString type =  tb->item(row, DiagSettingDialog::O_Type)->data(Qt::DisplayRole).toString();
+  QString typeId;
+  if (type == "meas") {
+    typeId = type + "@=" + tb->item(row, DiagSettingDialog::O_Id)->data(Qt::DisplayRole).toString();
+  }
+  else  {
+    typeId = type + "@=" + tb->item(row, DiagSettingDialog::O_Signal)->data(Qt::DisplayRole).toString();
+  }
   model->setData(index, category, Qt::DisplayRole);
-  emit updateMeasCategory(id, oldCategory, category);
+  emit updateOutputCategory(typeId, oldCategory, category);
 }
-
 /**
- * end of delegates implementation
+ *  end of delegates implementation
  */
 
 DiagSettingDialog::DiagSettingDialog(QWidget *parent) :
@@ -182,32 +308,40 @@ DiagSettingDialog::DiagSettingDialog(QWidget *parent) :
   QTableWidgetItem *item = ui->tableWidgetFailureMode->item(0, F_IdLabel);
   if (item == 0) {
     item = new QTableWidgetItem();
-     ui->tableWidgetFailureMode->setItem(0, F_IdLabel, item);
+    ui->tableWidgetFailureMode->setItem(0, F_IdLabel, item);
   }
-  item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable);
-  measIdDelegate_ = new MeasIdDelegate(this->ui->tableWidgetMeas);
-  measCategoryDelegate_ = new MeasCategoryDelegate(this->ui->tableWidgetMeas);
-  ui->tableWidgetMeas->setItemDelegateForColumn(M_Id, measIdDelegate_);
-  ui->tableWidgetMeas->setItemDelegateForColumn(M_Category, measCategoryDelegate_);
+  item->setFlags(item->flags() ^ Qt::ItemIsEditable);
 
-  for (int i = M_Check; i < MeasColumnEnd ; ++i) {
-    item = ui->tableWidgetMeas->item(0, i);
+  outputTypeDelegate_ = new OutputTypeDelegate(this->ui->tableWidgetOutput);
+  outputIdDelegate_ = new OutputIdDelegate(this->ui->tableWidgetOutput);
+  outputSignalDelegate_ = new OutputSignalDelegate(this->ui->tableWidgetOutput);
+  outputCategoryDelegate_ = new OutputCategoryDelegate(this->ui->tableWidgetOutput);
+  ui->tableWidgetOutput->setItemDelegateForColumn(O_Type, outputTypeDelegate_);
+  ui->tableWidgetOutput->setItemDelegateForColumn(O_Id, outputIdDelegate_);
+  ui->tableWidgetOutput->setItemDelegateForColumn(O_Signal, outputSignalDelegate_);
+  ui->tableWidgetOutput->setItemDelegateForColumn(O_Category, outputCategoryDelegate_);
+
+  for (int i = O_Id; i < OutputColumnEnd ; ++i) {
+    item = ui->tableWidgetOutput->item(0, i);
     if (item == 0) {
       item = new QTableWidgetItem();
-      ui->tableWidgetMeas->setItem(0, i, item);
+      ui->tableWidgetOutput->setItem(0, i, item);
     }
-      item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable);
+    item->setFlags(item->flags() ^ Qt::ItemIsEditable);
   }
   
   connect(failureModeIdDelegate_, SIGNAL(updateFailureModeId(const QString &, const QString&)),
           this, SLOT(onUpdateFailureModeId(const QString &, const QString&)));
   connect(failureModeIdLabelDelegate_, SIGNAL(updateFailureModeIdLabel(const QString &, const QString&)),
           this, SLOT(onUpdateFailureModeIdLabel(const QString &, const QString&)));
-
-  connect(measIdDelegate_, SIGNAL(updateMeasId(const QString &, const QString&, const QString&)),
-          this, SLOT(onUpdateMeasId(const QString &, const QString&, const QString&)));
-  connect(measCategoryDelegate_, SIGNAL(updateMeasCategory(const QString &, const QString&, const QString &)),
-          this, SLOT(onUpdateMeasCategory(const QString &, const QString&, const QString &)));
+  connect(outputTypeDelegate_, SIGNAL(updateOutputTypeId(const QString &, const QString&, const QString&)),
+          this, SLOT(onUpdateOutputTypeId(const QString &, const QString&, const QString&)));
+  connect(outputIdDelegate_, SIGNAL(updateOutputTypeId(const QString &, const QString&, const QString&)),
+          this, SLOT(onUpdateOutputTypeId(const QString &, const QString&, const QString&)));
+    connect(outputSignalDelegate_, SIGNAL(updateOutputTypeId(const QString &, const QString&, const QString&)),
+          this, SLOT(onUpdateOutputTypeId(const QString &, const QString&, const QString&)));
+  connect(outputCategoryDelegate_, SIGNAL(updateOutputCategory(const QString &, const QString&, const QString &)),
+          this, SLOT(onUpdateOutputCategory(const QString &, const QString&, const QString &)));
 }
 
 DiagSettingDialog::~DiagSettingDialog()
@@ -231,10 +365,10 @@ void DiagSettingDialog::cleanUiContain()
     ui->tableWidgetFailureMode->removeRow(0);
     rowCount = ui->tableWidgetFailureMode->rowCount();
   }
-  rowCount = ui->tableWidgetMeas->rowCount();
+  rowCount = ui->tableWidgetOutput->rowCount();
   while (rowCount > 1) {
-    ui->tableWidgetMeas->removeRow(0);
-    rowCount = ui->tableWidgetMeas->rowCount();
+    ui->tableWidgetOutput->removeRow(0);
+    rowCount = ui->tableWidgetOutput->rowCount();
   }
   // setting clear
   setting_.clear();
@@ -281,7 +415,7 @@ void DiagSettingDialog::setAfData(QAfData *qAf)
   }
   if (!setting_.failureModes_.empty()) {
     QString id = setting_.failureModes_.begin()->first.c_str();
-    updateTableWidgetMeas(id);
+    updateTableWidgetOutput(id);
   }
 }
 
@@ -307,73 +441,146 @@ void DiagSettingDialog::restoreAfData()
   Document::AllocatorType& allocator = qAf_->getAllocator();
   if (!ui->checkBox->checkState()) {
     qAf_->removeField("diagnostic_coverage");
-    // emit qAf_->configJsonChanged();
+    // need to disable in CF
+    emit qAf_->configJsonChanged();
     return;
   }
   Value v = setting_.getValue(allocator);
   qAf_->setValueField("diagnostic_coverage", v);
-  // emit qAf_->configJsonChanged();
+  // need to disable in CF
+  emit qAf_->configJsonChanged();
+}
+
+QStringList DiagSettingDialog::getOutputTypes()
+{
+  QStringList l;
+  l << "" << "meas" << "vec" << "dwc";
+  return l;
 }
 
 QStringList DiagSettingDialog::getSimStopIds()
 {
   vector<string> strs = setting_.getSimStopIds();
   QStringList l;
-  l << "";
   for (auto &e : strs) {
     l << e.c_str();
   }
   return l;
 }
 
-void DiagSettingDialog::updateTableWidgetMeas(const QString &id)
+void DiagSettingDialog::updateTableWidgetOutput(const QString &id)
 {
   if (id == currentFailureModeId_) return;
   currentFailureModeId_ = id;
-  int rowCount = ui->tableWidgetMeas->rowCount();
+  int rowCount = ui->tableWidgetOutput->rowCount();
   while (rowCount > 1) {
-    ui->tableWidgetMeas->removeRow(0);
-    rowCount = ui->tableWidgetMeas->rowCount();
+    ui->tableWidgetOutput->removeRow(0);
+    rowCount = ui->tableWidgetOutput->rowCount();
   }
   FailureMode &f = setting_.failureModes_[id.toStdString()];
   for (auto &e : f.functional_) {
-    int rowCount = ui->tableWidgetMeas->rowCount();
-    ui->tableWidgetMeas->insertRow(rowCount-1);
-    string id = e.first;
-    SimStop simStop = setting_.simStops_[id];
+    int rowCount = ui->tableWidgetOutput->rowCount();
+    ui->tableWidgetOutput->insertRow(rowCount-1);
+    string delimiter = "@=";
+    size_t pos = e.find(delimiter);
+    string type = e.substr(0, pos);
+    string id = e.substr(pos + 2);
     QStringList l;
-    l << id.c_str() << simStop.check_.c_str() << simStop.measName_.c_str()
-      << simStop.min_.c_str() << simStop.max_.c_str() << "functional";
-    for (int i = 0; i < 6; ++i) {
+    if (type == "meas") {
+      SimStop simStop = setting_.simStops_[id];
+      l << type.c_str() << id.c_str() << "" << simStop.measName_.c_str() << simStop.min_.c_str()
+	<< simStop.max_.c_str() << "functional";
+    }
+    else {
+      l << type.c_str() << "" << id.c_str() << "" << "" << "" << "functional";
+    }
+    for (int i = O_Type; i < OutputColumnEnd; ++i) {
       QTableWidgetItem *item = new QTableWidgetItem(l[i]);
-      ui->tableWidgetMeas->setItem(rowCount - 1, i, item);
+      ui->tableWidgetOutput->setItem(rowCount - 1, i, item);
+    }
+    for (int i = O_Id; i < O_Category; ++i) {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, i);
+      item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+    }
+    if (type == "meas") {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, O_Id);
+      item->setFlags(item->flags() | Qt::ItemIsEditable);
+    }
+    else {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, O_Signal);
+      item->setFlags(item->flags() | Qt::ItemIsEditable);
     }
   }
   for (auto &e : f.detection_) {
-    int rowCount = ui->tableWidgetMeas->rowCount();
-    ui->tableWidgetMeas->insertRow(rowCount-1);
-    string id = e.first;
-    SimStop simStop = setting_.simStops_[id];
+    int rowCount = ui->tableWidgetOutput->rowCount();
+    ui->tableWidgetOutput->insertRow(rowCount-1);
+    string delimiter = "@=";
+    size_t pos = e.find(delimiter);
+    string type = e.substr(0, pos);
+    string id = e.substr(pos + 2);
     QStringList l;
-    l << id.c_str() << simStop.check_.c_str() << simStop.measName_.c_str()
-      << simStop.min_.c_str() << simStop.max_.c_str() << "detection";
-    for (int i = 0; i < 6; ++i) {
+    if (type == "meas") {
+      SimStop simStop = setting_.simStops_[id];
+      l << type.c_str() << id.c_str() << "" << simStop.measName_.c_str() << simStop.min_.c_str()
+	<< simStop.max_.c_str() << "detection";
+    }
+    else {
+      l << type.c_str() << "" << id.c_str() << "" << "" << "" << "detection";
+    }
+    for (int i = O_Type; i < OutputColumnEnd; ++i) {
       QTableWidgetItem *item = new QTableWidgetItem(l[i]);
-      ui->tableWidgetMeas->setItem(rowCount - 1, i, item);
+      ui->tableWidgetOutput->setItem(rowCount - 1, i, item);
+    }
+    for (int i = O_Id; i < O_Category; ++i) {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, i);
+      item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+    }
+    if (type == "meas") {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, O_Id);
+      item->setFlags(item->flags() | Qt::ItemIsEditable);
+    }
+    else {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, O_Signal);
+      item->setFlags(item->flags() | Qt::ItemIsEditable);
     }
   }
   for (auto &e : f.latentDetection_) {
-    int rowCount = ui->tableWidgetMeas->rowCount();
-    ui->tableWidgetMeas->insertRow(rowCount-1);
-    string id = e.first;
-    SimStop simStop = setting_.simStops_[id];
+    int rowCount = ui->tableWidgetOutput->rowCount();
+    ui->tableWidgetOutput->insertRow(rowCount-1);
+    string delimiter = "@=";
+    size_t pos = e.find(delimiter);
+    string type = e.substr(0, pos);
+    string id = e.substr(pos + 2);
     QStringList l;
-    l << id.c_str() << simStop.check_.c_str() << simStop.measName_.c_str()
-      << simStop.min_.c_str() << simStop.max_.c_str() << "latent_detection";
-    for (int i = 0; i < 6; ++i) {
-      QTableWidgetItem *item = new QTableWidgetItem(l[i]);
-      ui->tableWidgetMeas->setItem(rowCount - 1, i, item);
+    if (type == "meas") {
+      SimStop simStop = setting_.simStops_[id];
+      l << type.c_str() << id.c_str() << "" << simStop.measName_.c_str() << simStop.min_.c_str()
+	<< simStop.max_.c_str() << "latent_detection";
     }
+    else {
+      l << type.c_str() << "" << id.c_str() << "" << "" << "" << "latent_detection";
+    }
+    for (int i = O_Type; i < OutputColumnEnd; ++i) {
+      QTableWidgetItem *item = new QTableWidgetItem(l[i]);
+      ui->tableWidgetOutput->setItem(rowCount - 1, i, item);
+    }
+    for (int i = O_Type; i < OutputColumnEnd; ++i) {
+      QTableWidgetItem *item = new QTableWidgetItem(l[i]);
+      ui->tableWidgetOutput->setItem(rowCount - 1, i, item);
+    }
+    for (int i = O_Id; i < O_Category; ++i) {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, i);
+      item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+    }
+    if (type == "meas") {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, O_Id);
+      item->setFlags(item->flags() | Qt::ItemIsEditable);
+    }
+    else {
+      QTableWidgetItem *item = ui->tableWidgetOutput->item(rowCount - 1, O_Signal);
+      item->setFlags(item->flags() | Qt::ItemIsEditable);
+    }
+
   }
 }
 
@@ -402,40 +609,40 @@ void DiagSettingDialog::changeFailureModeIdLabel(const QString &id, const QStrin
   f.idLabel_ = idLabel.toStdString();
 }
 
-void DiagSettingDialog::removeFuctional(const QString &id)
+void DiagSettingDialog::removeFuctional(const QString &typeId)
 {
   FailureMode &f = setting_.failureModes_[currentFailureModeId_.toStdString()];
-  f.functional_.erase(id.toStdString());
+  f.functional_.erase(typeId.toStdString());
 }
 
-void DiagSettingDialog::removeDetection(const QString &id)
+void DiagSettingDialog::removeDetection(const QString &typeId)
 {
   FailureMode &f = setting_.failureModes_[currentFailureModeId_.toStdString()];
-  f.detection_.erase(id.toStdString());
+  f.detection_.erase(typeId.toStdString());
 }
 
-void DiagSettingDialog::removeLatentDetection(const QString &id)
+void DiagSettingDialog::removeLatentDetection(const QString &typeId)
 {
   FailureMode &f = setting_.failureModes_[currentFailureModeId_.toStdString()];
-  f.latentDetection_.erase(id.toStdString());
+  f.latentDetection_.erase(typeId.toStdString());
 }
 
-void DiagSettingDialog::insertFuctional(const QString &id, const QString &type)
+void DiagSettingDialog::insertFuctional(const QString &typeId)
 {
   FailureMode &f = setting_.failureModes_[currentFailureModeId_.toStdString()];
-  f.functional_[id.toStdString()] = make_pair(id.toStdString(), type.toStdString());
+  f.functional_.insert(typeId.toStdString());
 }
 
-void DiagSettingDialog::insertDetection(const QString &id, const QString &type)
+void DiagSettingDialog::insertDetection(const QString &typeId)
 {
   FailureMode &f = setting_.failureModes_[currentFailureModeId_.toStdString()];
-  f.detection_[id.toStdString()] = make_pair(id.toStdString(), type.toStdString());
+  f.detection_.insert(typeId.toStdString());
 }
 
-void DiagSettingDialog::insertLatentDetection(const QString &id, const QString &type)
+void DiagSettingDialog::insertLatentDetection(const QString &typeId)
 {
   FailureMode &f = setting_.failureModes_[currentFailureModeId_.toStdString()];
-  f.latentDetection_[id.toStdString()] = make_pair(id.toStdString(), type.toStdString());
+  f.latentDetection_.insert(typeId.toStdString());
 }
 
 void DiagSettingDialog::onUpdateFailureModeId(const QString &oldId, const QString &newId)
@@ -458,47 +665,49 @@ void DiagSettingDialog::onUpdateFailureModeIdLabel(const QString &id, const QStr
   f.idLabel_ = idLabel.toStdString();
 }
 
-void DiagSettingDialog::onUpdateMeasId(const QString &oldId, const QString &newId, const QString& category)
+void DiagSettingDialog::onUpdateOutputTypeId(const QString &oldTypeId,
+					     const QString &newTypeId,
+					     const QString &category)
 {
-  if (oldId.isEmpty() && newId.isEmpty()) return;
-  if (!newId.isEmpty()) {
-    insertMeas(newId, category);
+  if (oldTypeId.isEmpty() && newTypeId.isEmpty()) return;
+  if (!oldTypeId.isEmpty()) {
+    removeOutput(oldTypeId, category);
   }
-  if (!oldId.isEmpty()) {
-    removeMeas(oldId, category);
+  if (!newTypeId.isEmpty()) {
+    insertOutput(newTypeId, category);
   }
 }
 
-void DiagSettingDialog::onUpdateMeasCategory(const QString &id, const QString &oldCategory, const QString &newCategory)
+void DiagSettingDialog::onUpdateOutputCategory(const QString &typeId, const QString &oldCategory, const QString &newCategory)
 {
-  removeMeas(id, oldCategory);
-  insertMeas(id, newCategory);
+  removeOutput(typeId, oldCategory);
+  insertOutput(typeId, newCategory);
 }
 
-void DiagSettingDialog::insertMeas(const QString &id, const QString &category)
+void DiagSettingDialog::insertOutput(const QString &typeId, const QString &category)
 {
   if (category == "functional") {
-    insertFuctional(id, "meas");
+    insertFuctional(typeId);
   }
   else if (category == "detection") {
-    insertDetection(id, "meas");
+    insertDetection(typeId);
   }
   else if (category == "latent_detection") {
-    insertLatentDetection(id, "meas");
+    insertLatentDetection(typeId);
   }
 
 }
 
-void DiagSettingDialog::removeMeas(const QString &id, const QString &category)
+void DiagSettingDialog::removeOutput(const QString &typeId, const QString &category)
 {
   if (category == "functional") {
-    removeFuctional(id);
+    removeFuctional(typeId);
   }
   else if (category == "detection") {
-    removeDetection(id);
+    removeDetection(typeId);
   }
   else if (category == "latent_detection") {
-    removeLatentDetection(id);
+    removeLatentDetection(typeId);
   }
 }
 
@@ -509,7 +718,7 @@ void DiagSettingDialog::on_tableWidgetFailureMode_currentCellChanged(int current
   QTableWidgetItem *item = ui->tableWidgetFailureMode->item(currentRow, F_Id);
   if (item) {
     QString id = item->data(Qt::DisplayRole).toString();
-    updateTableWidgetMeas(id);
+    updateTableWidgetOutput(id);
   }
 }
 

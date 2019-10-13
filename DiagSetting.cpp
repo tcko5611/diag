@@ -70,12 +70,21 @@ Value FailureMode::getValue(Document::AllocatorType &allocator)
   if (!functional_.empty()) {
     Value vv(kArrayType);
     for (auto &e : functional_) {
+      string delimiter = "@=";
+      size_t pos = e.find(delimiter);
+      string type = e.substr(0, pos);
+      string id = e.substr(pos + 2);
       Value vvv(kObjectType);
       Value vvv1, vvv2;
-      vvv1.SetString(e.second.first.c_str(), e.second.first.size(), allocator);
-      vvv2.SetString(e.second.second.c_str(), e.second.second.size(), allocator);
-      vvv.AddMember("id", vvv1, allocator);
-      vvv.AddMember("type", vvv2, allocator);
+      vvv1.SetString(type.c_str(), type.size(), allocator);
+      vvv2.SetString(id.c_str(), id.size(), allocator);
+      vvv.AddMember("type", vvv1, allocator);
+      if (type == "meas") {
+	vvv.AddMember("id", vvv2, allocator);
+      }
+      else {
+	vvv.AddMember("signal", vvv2, allocator);
+      }
       vv.PushBack(vvv, allocator);
     }
     v.AddMember("functional_output", vv, allocator);
@@ -83,12 +92,21 @@ Value FailureMode::getValue(Document::AllocatorType &allocator)
   if (!detection_.empty()) {
     Value vv(kArrayType);
     for (auto &e : detection_) {
+      string delimiter = "@=";
+      size_t pos = e.find(delimiter);
+      string type = e.substr(0, pos);
+      string id = e.substr(pos + 2);
       Value vvv(kObjectType);
       Value vvv1, vvv2;
-      vvv1.SetString(e.second.first.c_str(), e.second.first.size(), allocator);
-      vvv2.SetString(e.second.second.c_str(), e.second.second.size(), allocator);
-      vvv.AddMember("id", vvv1, allocator);
-      vvv.AddMember("type", vvv2, allocator);
+      vvv1.SetString(type.c_str(), type.size(), allocator);
+      vvv2.SetString(id.c_str(), id.size(), allocator);
+      vvv.AddMember("type", vvv1, allocator);
+      if (type == "meas") {
+	vvv.AddMember("id", vvv2, allocator);
+      }
+      else {
+	vvv.AddMember("signal", vvv2, allocator);
+      }
       vv.PushBack(vvv, allocator);
     }
     v.AddMember("detection_output", vv, allocator);
@@ -96,12 +114,21 @@ Value FailureMode::getValue(Document::AllocatorType &allocator)
   if (!latentDetection_.empty()) {
     Value vv(kArrayType);
     for (auto &e : latentDetection_) {
+      string delimiter = "@=";
+      size_t pos = e.find(delimiter);
+      string type = e.substr(0, pos);
+      string id = e.substr(pos + 2);
       Value vvv(kObjectType);
       Value vvv1, vvv2;
-      vvv1.SetString(e.second.first.c_str(), e.second.first.size(), allocator);
-      vvv2.SetString(e.second.second.c_str(), e.second.second.size(), allocator);
-      vvv.AddMember("id", vvv1, allocator);
-      vvv.AddMember("type", vvv2, allocator);
+      vvv1.SetString(type.c_str(), type.size(), allocator);
+      vvv2.SetString(id.c_str(), id.size(), allocator);
+      vvv.AddMember("type", vvv1, allocator);
+      if (type == "meas") {
+	vvv.AddMember("id", vvv2, allocator);
+      }
+      else {
+	vvv.AddMember("signal", vvv2, allocator);
+      }
       vv.PushBack(vvv, allocator);
     }
     v.AddMember("latent_detection_output", vv, allocator);
@@ -190,14 +217,41 @@ void DiagSetting::buildDiagSetting(const rapidjson::Document &json)
       f.idLabel_ = v["id_label"].GetString();
       if (v.HasMember("functional_output")) {
         for (auto &vv : v["functional_output"].GetArray()) {
-          string id = vv["id"].GetString(), type = vv["type"].GetString();
-          f.functional_[id] = make_pair(id, type);
+	  string type = vv["type"].GetString();
+	  string id;
+	  if (type == "meas" ) {
+	    id = vv["id"].GetString();
+	  }
+	  else {
+	    id = vv["signal"].GetString();
+	  }
+          f.functional_.insert(type + "@=" + id);
         }
       }
       if (v.HasMember("detection_output")) {
         for (auto &vv : v["detection_output"].GetArray()) {
-          string id = vv["id"].GetString(), type = vv["type"].GetString();
-          f.detection_[id] = make_pair(id, type);
+	  string type = vv["type"].GetString();
+	  string id;
+	  if (type == "meas" ) {
+	    id = vv["id"].GetString();
+	  }
+	  else {
+	    id = vv["signal"].GetString();
+	  }
+          f.detection_.insert(type + "@=" + id);
+        }
+      }
+      if (v.HasMember("latent_detection_output")) {
+        for (auto &vv : v["latent_detection_output"].GetArray()) {
+	  string type = vv["type"].GetString();
+	  string id;
+	  if (type == "meas" ) {
+	    id = vv["id"].GetString();
+	  }
+	  else {
+	    id = vv["signal"].GetString();
+	  }
+          f.latentDetection_.insert(type + "@=" + id);
         }
       }
       failureModes_[f.id_] = f;
